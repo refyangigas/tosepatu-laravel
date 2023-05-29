@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,8 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
+
+       'id_role', 
         'name',
         'email',
         'password',
@@ -62,5 +65,9 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function Role(){
+        return $this->belongsTo(Role::class, 'id_role', 'id');
     }
 }
