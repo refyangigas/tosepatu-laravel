@@ -15,7 +15,7 @@
            <th>No</th>
            <th>Nama</th>
            <th>Harga</th>
-           <th>Tindakan</th>
+           <th>Action</th>
          </tr>
        </thead>
        <tbody>

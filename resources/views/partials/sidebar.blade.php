@@ -28,7 +28,7 @@
             <span>Pengguna</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('laporan') }}">
             <i class="fa fa-flag" aria-hidden="true"></i>
             <span>Laporan</span></a>
     </li>

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\JasaController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth
 Route::get('transaksi', [TransaksiController::class, 'index'])->middleware('auth')->name('transaksi');
 Route::get('jasa', [JasaController::class, 'index'])->middleware('auth')->name('jasa');
 Route::get('pengguna', [PenggunaController::class, 'index'])->middleware('auth')->name('pengguna');
+Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth')->name('laporan');
 // Route::group([
 //     'middleware' => 'api',
 //     'prefix' => 'auth'
