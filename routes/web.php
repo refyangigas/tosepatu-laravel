@@ -53,6 +53,7 @@ Route::put('/pengguna-edit/{id}', [PenggunaController::class, 'edit']);
 Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth')->name('laporan');
 
 Route::get('profile', [Profilecontroller::class, 'index'])->middleware('auth')->name('profile');
+Route::put('/profile-edit/{id}', [ProfileController::class, 'edit']);
 // Route::group([
 //     'middleware' => 'api',
 //     'prefix' => 'auth'

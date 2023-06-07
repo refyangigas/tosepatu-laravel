@@ -33,7 +33,7 @@
             <span>Laporan</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('profile') }}">
+        <a class="nav-link" href="/profile">
             <i class="fa fa-male" aria-hidden="true"></i>
             <span>Profil</span></a>
     </li>

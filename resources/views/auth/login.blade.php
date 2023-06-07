@@ -19,12 +19,16 @@
                                             {{ session('message') }}
                                         </div>
                                     @endif
-                                    
+
                                     <form class="user" action="" method="POST">
                                         @csrf
                                         <div class="form-group">
+                                            <input type="name" class="form-control" id="exampleInputName" name="name"
+                                                aria-describedby="emailHelp" placeholder="Masukan Name">
+                                        </div>
+                                        <div class="form-group">
                                             <input type="email" class="form-control" id="exampleInputEmail" name="email"
-                                                aria-describedby="emailHelp" placeholder="Enter Email Address">
+                                                aria-describedby="emailHelp" placeholder="Masukan Email Address">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="exampleInputPassword"
@@ -40,8 +44,8 @@
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                                         </div>
-                                        
-                                        
+
+
                                     </form>
                                     <hr>
                                     <div class="text-center">

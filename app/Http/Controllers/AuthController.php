@@ -18,6 +18,7 @@ class AuthController extends Controller
     {
         // validasi
         $credentials = $request->validate([
+            'name'=> 'required|string',
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
@@ -33,7 +34,7 @@ class AuthController extends Controller
                 Session::flash('message', 'verifikasi');
                 return redirect('login');
             }
-            
+
             if (Auth::user()->id_role == 1) {
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
