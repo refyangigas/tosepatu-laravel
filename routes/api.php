@@ -12,3 +12,4 @@ Route::post('/login', [AndroiAuthController::class, 'login']);
 Route::post('/register', [AndroiAuthController::class, 'register']);
 Route::post('/apistatus', [AndroidApiController::class, 'StatusApi']);
 Route::post('/apiprofile', [AndroidApiController::class, 'ProfileApi']);
+Route::post('/updateprofile', [AndroidApiController::class, 'UpdateProfile']);

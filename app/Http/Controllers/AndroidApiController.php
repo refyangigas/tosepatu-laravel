@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AndroidApiController extends Controller
 {
@@ -33,6 +34,31 @@ class AndroidApiController extends Controller
 
         return response()->json($user);
     }
+    public function UpdateProfile(Request $request)
+    {
+        $user = User::findOrFail($request->input('id_user'));
 
+        // Validasi request jika hanya field yang diisi yang akan diupdate
+        $validatedData = $request->validate([
+            'name' => 'sometimes|string',
+            'email' => 'sometimes|email|unique:users,email,' . $user->id,
+            'password' => 'sometimes|string|min:6',
+        ]);
+
+        // Update data pengguna jika ada perubahan pada field yang diisi
+        if ($request->has('name')) {
+            $user->name = $validatedData['name'];
+        }
+        if ($request->has('email')) {
+            $user->email = $validatedData['email'];
+        }
+        if ($request->has('password')) {
+            $user->password = Hash::make($validatedData['password']);
+        }
+
+        $user->save();
+
+        return response()->json($user);
+    }
 
 }
