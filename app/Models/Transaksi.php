@@ -9,7 +9,7 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengiriman';
+    protected $table = 'transaksi';
 
     protected $fillable = [
 
@@ -25,19 +25,23 @@ class Transaksi extends Model
         'tanggal',
 
     ];
-    public function Layanan(){
+    public function Layanan()
+    {
         return $this->belongsTo(Layanan::class, 'id_role', 'id');
     }
 
-    public function Pembayaran(){
+    public function Pembayaran()
+    {
         return $this->belongsTo(Pembayaran::class, 'id_role', 'id');
     }
 
-    public function Pengiriman(){
+    public function Pengiriman()
+    {
         return $this->belongsTo(Pengiriman::class, 'id_role', 'id');
     }
 
-    public function Penjemputan(){
+    public function Penjemputan()
+    {
         return $this->belongsTo(Penjemputan::class, 'id_role', 'id');
     }
 
