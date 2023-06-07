@@ -24,11 +24,11 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="name" class="form-control" id="exampleInputName" name="name"
-                                                aria-describedby="emailHelp" placeholder="Masukan Name">
+                                                aria-describedby="nameHelp" placeholder="Masukan Name">
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="exampleInputEmail" name="email"
-                                                aria-describedby="emailHelp" placeholder="Masukan Email Address">
+                                                aria-describedby="emailHelp" placeholder="Masukan Email ">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="exampleInputPassword"

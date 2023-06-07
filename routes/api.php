@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ApiLayananController;
-use App\Http\Controllers\ApiPembayaranController;
-use App\Http\Controllers\ApiPengirimanController;
-use App\Http\Controllers\ApiPenjemputanController;
-use App\Http\Controllers\ApiTransaksiController;
+use App\Http\Controllers\api\ApiLayananController;
+use App\Http\Controllers\api\ApiPembayaranController;
+use App\Http\Controllers\api\ApiPengirimanController;
+use App\Http\Controllers\api\ApiPenjemputanController;
+use App\Http\Controllers\api\ApiTransaksiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;

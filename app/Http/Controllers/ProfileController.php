@@ -47,7 +47,7 @@ class ProfileController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'id_role' => '2',
+            'id_role' => '1',
         ]);
 
         return redirect('/profile')->with('add','berhasil delete');
