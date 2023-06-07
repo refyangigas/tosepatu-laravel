@@ -86,5 +86,12 @@ class DatabaseSeeder extends Seeder
         ]);
   
   
+        User::create([
+            'name' => 'ilham',
+            'email' => 'ilham@admin.com',
+            'password' => bcrypt('ilham'),
+            'id_role' => 2,
+            'email_verified_at' => now()
+        ]);
     }
 }

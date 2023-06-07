@@ -13,7 +13,7 @@ class Pengiriman extends Model
 
     protected $fillable = [
 
-        'nama',
+        'name',
         'harga',
 
     ];

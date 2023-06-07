@@ -18,12 +18,12 @@
             <span>Transaksi</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('jasa') }}">
+        <a class="nav-link" href="/jasa">
             <i class="fa fa-podcast" aria-hidden="true"></i>
             <span>Jasa</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('pengguna') }}">
+        <a class="nav-link" href="/pengguna">
             <i class="fa fa-users" aria-hidden="true"></i>
             <span>Pengguna</span></a>
     </li>
@@ -33,7 +33,7 @@
             <span>Laporan</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('profile') }}">
             <i class="fa fa-male" aria-hidden="true"></i>
             <span>Profil</span></a>
     </li>
