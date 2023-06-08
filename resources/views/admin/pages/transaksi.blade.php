@@ -85,8 +85,26 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput2">Status</label>
-                                    <input name="status" value="{{ $data->status }}" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Status">
+                                    <select name="status" class="form-control" aria-label="Default select example">
+
+                                        @if ($data->status == "Selesai")
+                                        <option selected value="Selesai">Selesai</option>
+                                        <option value="Pengerjaan">Pengerjaan</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        @elseif ($data->status == "Pengerjaan")
+                                        <option selected value="Pengerjaan">Pengerjaan</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        @else
+                                        <option selected value="Belum Selesai">Belum Selesai</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Pengerjaan">Pengerjaan</option>
+                                        @endif
+
+                                      </select>
+                                    {{-- <input name="status" value="{{ $data->status }}" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Status"> --}}
                                 </div>
+
                                 <div class="form-group">
                                     <label for="exampleFormControlInput3">Alamat</label>
                                     <input name="alamat" value="{{ $data->alamat }}" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Alamat">
