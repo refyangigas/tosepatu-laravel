@@ -2,83 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
-
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('admin.pages.transaksi');
+        $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
+
+        $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Pengiriman->harga * $transaksi->jumlah;
+        });
+
+        $totalPenjemputan = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Penjemputan->harga * $transaksi->jumlah;
+        });
+
+        $totalLayanan = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Layanan->harga * $transaksi->jumlah;
+        });
+
+        $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
+
+        return view('admin.pages.transaksi', [
+            'datatransaksi' => $datatransaksi,
+            'totalPengiriman' => $totalPengiriman,
+            'totalPenjemputan' => $totalPenjemputan,
+            'totalLayanan' => $totalLayanan,
+            'total' => $total,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required',
+            'alamat' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = $request->status;
+        $transaksi->alamat = $request->alamat;
+        $transaksi->jumlah = $request->jumlah;
+        $transaksi->save();
+
+        return redirect()->back()->with('success', 'Data transaksi berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
+   public function destroy($id)
+{
+    Transaksi::find($id)->delete();
+
+    return redirect('/transaksi')->with('delete', 'Berhasil delete');
+}
+
 }

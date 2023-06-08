@@ -50,87 +50,20 @@
                 </tr>
               </thead>
               <tbody>
-                  @php
-            $no = 1;
-            @endphp
-     @foreach ($datalayanan as $data )
                 <tr>
-                  <td><a href="#">{{ $no++ }}</a></td>
+                  <td><a href="#">1</a></td>
                   <td><span class="badge badge-success">Terkirim</span></td>
-                  <td>{{ $data->name }}</td>
+                  <td>Udin Wayang</td>
                   <td><span class="badge badge-success">Terkirim</span></td>
                   <td>Nasi Padang</td>
                   <td>10</td>
                   <td><a href="#" class="btn btn-sm btn-primary">Bukti</a></td>
                   <td>00-00-00</td>
                   <td>
-                    <a href="#" data-toggle="modal" data-target="#ModalEditPenjemputan{{ $data->id }}"
-                        id="#myBtn" class="btn btn-sm btn-primary">Edit</a>
-                      <a href="#" data-toggle="modal" data-target="#ModalDeletePenjemputan{{ $data->id }}"
-                        id="#myBtn" class="btn btn-sm btn-primary">Delete</a>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-primary">Delete</a>
                   </td>
                 </tr>
-                    <!-- Modal -->
-            <div class="modal fade" id="ModalEditPenjemputan{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Edit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <form action="/jasa-edit-penjemputan/{{ $data->id }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nama</label>
-                        <input name="name" value="{{ $data->name }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Harga</label>
-                        <input name="harga" value="{{ $data->harga }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-                </div>
-                </div>
-            </div>
-                <!-- Modal -->
-                <div class="modal fade" id="ModalDeletePenjemputan{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Delete</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <form action="/jasa-delete-penjemputan/{{ $data->id }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <div class="modal-body">
-                        <p>Anda Yakin Akan Menghapus Data {{ $data->name }} ?</p>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">delete</button>
-                        </div>
-                    </form>
-                </div>
-                </div>
-            </div>
-            @endforeach
-            </tbody>
-        </table>
-        </div>
                 <!-- Data lainnya -->
               </tbody>
             </table>
@@ -144,35 +77,3 @@
 </div>
 
 @endsection
-
-
-@section('sweetalert')
-
-@if (Session::get('update'))
-<script>
-  Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Diupdate',
-})
-</script>
-@endif
-@if (Session::get('add'))
-<script>
-   Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Ditambah',
-})
-</script>
-@endif
-@if (Session::get('delete'))
-<script>
-  Swal.fire({
-  icon: 'success',
-  title: 'Berhasil Dihapus',
-})
-</script>
-@endif
-
-@endsection
-
-

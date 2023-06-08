@@ -30,7 +30,13 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
-Route::get('transaksi', [TransaksiController::class, 'index'])->middleware('auth')->name('transaksi');
+// Route::get('transaksi', [TransaksiController::class, 'index'])->middleware('auth')->name('transaksi');
+Route::get('/transaksi', [TransaksiController::class, 'index']);
+Route::delete('/transaksi-delete/{id}', [TransaksiController::class, 'destroy']);
+// Route::put('/transaksi-edit/{id}', [TransaksiController::class, 'edit']);
+Route::put('/transaksi-edit/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+
+
 
 Route::get('jasa', [JasaController::class, 'index'])->middleware('auth')->name('jasa');
 Route::post('/layanan-add', [JasaController::class, 'createLayanan'])->middleware('auth')->name('layanan.create');
