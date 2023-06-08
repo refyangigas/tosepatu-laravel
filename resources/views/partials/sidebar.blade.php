@@ -2,7 +2,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('admin/img/logo/logo2.png') }}">
+            {{-- <img src="{{ asset('admin/img/logo/logo2.png') }}"> --}}
         </div>
         <div class="sidebar-brand-text mx-3">To Sepatu KC</div>
     </a>
@@ -13,7 +13,7 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('transaksi') }}">
+        <a class="nav-link" href="/transaksi">
             <i class="fa fa-briefcase"></i>
             <span>Transaksi</span></a>
     </li>

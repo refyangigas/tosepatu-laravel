@@ -41,7 +41,7 @@
                   <th>Alamat</th>
                   <th>Pembayaran</th>
                   <th>Total</th>
-                  <th>jumlah</th>
+                  <th>Jumlah</th>
                   <th>Bukti</th>
                   <th>Tanggal</th>
                   <th>Action</th>
@@ -54,12 +54,12 @@
                 @foreach ($datatransaksi as $data)
                 <tr>
                   <td><a href="#">{{ $no++ }}</a></td>
-                  <td><span class="badge badge-success">{{$data->status}}</span></td>
-                  <td>{{ $data->User->name}}</td>
+                  <td><span class="badge badge-success">{{ $data->status }}</span></td>
+                  <td>{{ $data->User->name }}</td>
                   <td>{{ $data->alamat }}</td>
-                  <td><span class="badge badge-success">{{ $data->pembayaran->nama}}</span></td>
+                  <td><span class="badge badge-success">{{ $data->Pembayaran->nama }}</span></td>
                   <td>{{ $total }}</td>
-                  <td>{{$data->jumlah}}</td>
+                  <td>{{ $data->jumlah }}</td>
                   <td><a href="#" class="btn btn-sm btn-primary">Bukti</a></td>
                   <td>{{ $data->tanggal }}</td>
                   <td>
@@ -70,40 +70,40 @@
                   </td>
                 </tr>
                 <!-- Modal -->
-                    <div class="modal fade" id="ModalEditTransaksi{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal Edit</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
+                <div class="modal fade" id="ModalEditTransaksi{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal Edit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="/transaksi-edit/{{ $data->id }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="exampleFormControlInput2">Status</label>
+                            <input name="status" value="{{ $data->status }}" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Status">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlInput3">Alamat</label>
+                            <input name="alamat" value="{{ $data->alamat }}" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Alamat">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlInput4">Jumlah</label>
+                            <input name="jumlah" value="{{ $data->jumlah }}" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Jumlah">
+                          </div>
                         </div>
-                        <form action="/transaksi-edit/1" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput2">Status</label>
-                                <input name="status" value="{{ $data->status }}" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Status">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput3">Alamat</label>
-                                <input name="alamat" value="{{ $data->alamat }}" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Alamat">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput4">Jumlah</label>
-                                <input name="jumlah" value="{{ $data->jumlah }}" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Jumlah">
-                            </div>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
+                      </form>
                     </div>
-                    </div>
+                  </div>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="ModalDeleteTransaksi{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -122,7 +122,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">delete</button>
+                          <button type="submit" class="btn btn-primary">Delete</button>
                         </div>
                       </form>
                     </div>
