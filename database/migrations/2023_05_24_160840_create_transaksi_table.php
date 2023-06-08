@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->string('alamat');
-            $table->enum('status', ['selesai', 'belum_selesai']);
+            $table->enum('status', ['Selesai', 'Belum Selesai','Pengerjaan']);
             $table->string('jumlah');
             $table->string('bukti');
-            $table->date('tanggal');                 
+            $table->date('tanggal');
+            $table->decimal('total', 8, 2);
             $table->timestamps();
         });
     }
