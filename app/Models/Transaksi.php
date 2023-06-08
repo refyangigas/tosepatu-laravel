@@ -20,6 +20,7 @@ class Transaksi extends Model
         'id_user',
         'alamat',
         'status',
+        'total',
         'jumlah',
         'bukti',
         'tanggal',
@@ -27,22 +28,28 @@ class Transaksi extends Model
     ];
     public function Layanan()
     {
-        return $this->belongsTo(Layanan::class, 'id_role', 'id');
+        return $this->belongsTo(Layanan::class, 'id_layana', 'id');
     }
 
     public function Pembayaran()
     {
-        return $this->belongsTo(Pembayaran::class, 'id_role', 'id');
+        return $this->belongsTo(Pembayaran::class, 'id_pembayaran', 'id');
     }
 
     public function Pengiriman()
     {
-        return $this->belongsTo(Pengiriman::class, 'id_role', 'id');
+        return $this->belongsTo(Pengiriman::class, 'id_pengiriman', 'id');
     }
 
     public function Penjemputan()
     {
-        return $this->belongsTo(Penjemputan::class, 'id_role', 'id');
+        return $this->belongsTo(Penjemputan::class, 'id_penjemputan', 'id');
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
 
 }
