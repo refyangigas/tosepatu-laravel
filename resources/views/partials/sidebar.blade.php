@@ -13,7 +13,7 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('transaksi') }}">
+        <a class="nav-link" href="/transaksi">
             <i class="fa fa-briefcase"></i>
             <span>Transaksi</span></a>
     </li>
