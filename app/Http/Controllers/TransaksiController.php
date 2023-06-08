@@ -4,28 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
-
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $datatransaksi = Transaksi::with('User','Penjemputan', 'Pembayaran', 'Layanan', 'Pengiriman')->get();
+        $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
 
+        $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Pengiriman->harga * $transaksi->jumlah;
+        });
 
-        return view('admin.pages.transaksi',[
+        $totalPenjemputan = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Penjemputan->harga * $transaksi->jumlah;
+        });
+
+        $totalLayanan = $datatransaksi->sum(function ($transaksi) {
+            return $transaksi->Layanan->harga * $transaksi->jumlah;
+        });
+
+        $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
+
+        return view('admin.pages.transaksi', [
             'datatransaksi' => $datatransaksi,
+            'totalPengiriman' => $totalPengiriman,
+            'totalPenjemputan' => $totalPenjemputan,
+            'totalLayanan' => $totalLayanan,
+            'total' => $total,
         ]);
-        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+            'alamat' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = $request->status;
+        $transaksi->alamat = $request->alamat;
+        $transaksi->jumlah = $request->jumlah;
+        $transaksi->save();
+
+        return redirect()->back()->with('success', 'Data transaksi berhasil diperbarui.');
+    }
+
+
+   public function destroy($id)
+{
+    Transaksi::find($id)->delete();
+
+    return redirect('/transaksi')->with('delete', 'Berhasil delete');
+}
+
 }
