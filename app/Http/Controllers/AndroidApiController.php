@@ -80,5 +80,45 @@ class AndroidApiController extends Controller
 
         return response()->json($transaksi);
     }
+    public function uploadBukti(Request $request)
+    {
+        // Validasi request
+        $request->validate([
+            'id' => 'required|numeric',
+            'bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
+        $id = $request->input('id');
+
+        // Mengambil file bukti dari request
+        $bukti = $request->file('bukti');
+
+        // Cek apakah transaksi dengan ID yang diberikan ada dalam database
+        $transaksi = Transaksi::find($id);
+        if (!$transaksi) {
+            // Jika transaksi tidak ditemukan, kembalikan respons error
+            return response()->json(['message' => 'Transaksi tidak ditemukan'], 404);
+        }
+
+        // Periksa apakah transaksi memiliki bukti sebelumnya
+        if ($transaksi->bukti) {
+            // Hapus file bukti sebelumnya dari direktori public
+            $publicPath = public_path('uploads');
+            $oldBuktiPath = $publicPath . '/' . $transaksi->bukti;
+            if (file_exists($oldBuktiPath)) {
+                unlink($oldBuktiPath);
+            }
+        }
+
+        // Simpan file bukti baru ke dalam direktori public
+        $newBuktiPath = $publicPath . '/' . $bukti->getClientOriginalName();
+        $bukti->move($publicPath, $bukti->getClientOriginalName());
+
+        // Simpan informasi bukti baru ke dalam database
+        $transaksi->bukti = $bukti->getClientOriginalName();
+        $transaksi->save();
+
+        // Mengembalikan response sukses
+        return response()->json(['message' => 'Bukti berhasil diunggah'], 200);
+    }
 }
