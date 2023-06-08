@@ -111,6 +111,7 @@ class AndroidApiController extends Controller
         }
 
         // Simpan file bukti baru ke dalam direktori public
+        $publicPath = public_path('uploads');
         $newBuktiPath = $publicPath . '/' . $bukti->getClientOriginalName();
         $bukti->move($publicPath, $bukti->getClientOriginalName());
 
@@ -121,4 +122,5 @@ class AndroidApiController extends Controller
         // Mengembalikan response sukses
         return response()->json(['message' => 'Bukti berhasil diunggah'], 200);
     }
+
 }
