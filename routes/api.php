@@ -14,3 +14,4 @@ Route::post('/apistatus', [AndroidApiController::class, 'StatusApi']);
 Route::post('/apiprofile', [AndroidApiController::class, 'ProfileApi']);
 Route::post('/updateprofile', [AndroidApiController::class, 'UpdateProfile']);
 Route::get('/apilayanan', [AndroidApiController::class, 'LayananApi']);
+Route::post('/apipembayaran', [AndroidApiController::class, 'PembayaranApi']);

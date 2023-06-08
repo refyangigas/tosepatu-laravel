@@ -66,4 +66,19 @@ class AndroidApiController extends Controller
         $layanan = Layanan::all();
         return response()->json($layanan);
     }
+
+    public function PembayaranApi(Request $request)
+    {
+        $id_user = $request->input('id_user');
+
+        $transaksi = Transaksi::join('users', 'transaksi.id_user', '=', 'users.id')
+            ->join('layanan', 'transaksi.id_layanan', '=', 'layanan.id')
+            ->select('transaksi.*', 'users.name as nama_user', 'users.email as email_user', 'layanan.name as nama_layanan')
+            ->where('users.id', $id_user)
+            ->where('transaksi.status', 'belum_selesai')
+            ->get();
+
+        return response()->json($transaksi);
+    }
+
 }
