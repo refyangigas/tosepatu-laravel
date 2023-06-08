@@ -26,15 +26,18 @@ class Transaksi extends Model
         'tanggal',
 
     ];
+
     public function Layanan()
     {
-        return $this->belongsTo(Layanan::class, 'id_layana', 'id');
+        return $this->belongsTo(Layanan::class, 'id_layanan', 'id');
     }
+
 
     public function Pembayaran()
     {
         return $this->belongsTo(Pembayaran::class, 'id_pembayaran', 'id');
     }
+
 
     public function Pengiriman()
     {
