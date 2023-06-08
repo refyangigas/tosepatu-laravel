@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Layanan;
 use App\Models\Transaksi;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -60,5 +61,9 @@ class AndroidApiController extends Controller
 
         return response()->json($user);
     }
-
+    public function LayananApi(Request $request)
+    {
+        $layanan = Layanan::all();
+        return response()->json($layanan);
+    }
 }
