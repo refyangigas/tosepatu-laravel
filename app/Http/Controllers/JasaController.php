@@ -135,9 +135,13 @@ class JasaController extends Controller
 
     public function destroyLayanan($id)
     {
-        Layanan::find($id)->delete();
-
-        return redirect('/jasa')->with('delete', 'berhasil delete');
+        $layanan = Layanan::find($id);
+        if ($layanan) {
+            $layanan->delete();
+            return redirect('/jasa')->with('delete', 'berhasil delete');
+        } else {
+            return redirect('/jasa')->with('error', 'Data tidak ditemukan');
+        }
     }
 
     public function destroyPenjemputan($id)
