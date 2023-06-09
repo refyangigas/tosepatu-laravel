@@ -89,7 +89,7 @@
 <div class="col-xl-8 col-lg-7">
     <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary text-white">
-            <h6 class="m-0 font-weight-bold">Grafik Pendapatan (Hari Ini)</h6>
+            <h6 class="m-0 font-weight-bold">Grafik Pendapatan (Bulan)</h6>
         </div>
         <div class="card-body">
             <div class="chart-area">

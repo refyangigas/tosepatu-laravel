@@ -16,12 +16,12 @@ class DashboardController extends Controller
         $datatransaksi = Transaksi::whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->count();
         $user = User::count();
         $datalayanan = Layanan::count();
-        // dd(Auth::user());
-        return view('admin.pages.dashboard',[
-        'totalpendapatan' => $datapendapatan,
-        'totaltransaksi' => $datatransaksi,
-        'totaldatauser' => $user,
-        'totaldatalayanan' => $datalayanan,
-    ]);
+
+        return view('admin.pages.dashboard', [
+            'totalpendapatan' => $datapendapatan,
+            'totaltransaksi' => $datatransaksi,
+            'totaldatauser' => $user,
+            'totaldatalayanan' => $datalayanan
+        ]);
     }
 }
