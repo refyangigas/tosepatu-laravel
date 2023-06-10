@@ -41,7 +41,7 @@
                   <th>Alamat</th>
                   <th>Pembayaran</th>
                   <th>Total</th>
-                  <th>jumlah</th>
+                  <th>Jumlah</th>
                   <th>Bukti</th>
                   <th>Tanggal</th>
                   <th>Action</th>
@@ -58,7 +58,7 @@
                   <td>{{ $data->User->name}}</td>
                   <td>{{ $data->alamat }}</td>
                   <td><span class="badge badge-success">{{ $data->pembayaran->nama}}</span></td>
-                  <td>{{$data->Pengiriman->harga * $data->jumlah + $data->Penjemputan->harga * $data->jumlah + $data->Layanan->harga * $data->jumlah }} </td>
+                  <td>{{ $data->Pengiriman->harga * $data->jumlah + $data->Penjemputan->harga * $data->jumlah + $data->Layanan->harga * $data->jumlah }}</td>
                   <td>{{$data->jumlah}}</td>
                   <td><a href="#" class="btn btn-sm btn-primary">Bukti</a></td>
                   <td>{{ $data->tanggal }}</td>
@@ -86,7 +86,6 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlInput2">Status</label>
                                     <select name="status" class="form-control" aria-label="Default select example">
-
                                         @if ($data->status == "Selesai")
                                         <option selected value="Selesai">Selesai</option>
                                         <option value="Pengerjaan">Pengerjaan</option>
@@ -100,11 +99,8 @@
                                         <option value="Selesai">Selesai</option>
                                         <option value="Pengerjaan">Pengerjaan</option>
                                         @endif
-
                                       </select>
-                                    {{-- <input name="status" value="{{ $data->status }}" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Status"> --}}
                                 </div>
-
                                 <div class="form-group">
                                     <label for="exampleFormControlInput3">Alamat</label>
                                     <input name="alamat" value="{{ $data->alamat }}" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Alamat">

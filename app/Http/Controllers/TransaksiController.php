@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+
 class TransaksiController extends Controller
 {
     public function index()
@@ -19,7 +20,7 @@ class TransaksiController extends Controller
             $totalPenjemputan += $transaksi->Penjemputan->harga * $transaksi->jumlah;
             $totalLayanan += $transaksi->Layanan->harga * $transaksi->jumlah;
         }
-        
+
         $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
 
         // $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
@@ -51,22 +52,19 @@ class TransaksiController extends Controller
             'jumlah' => 'required',
         ]);
 
-
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->status = $request->status;
         $transaksi->alamat = $request->alamat;
         $transaksi->jumlah = $request->jumlah;
         $transaksi->save();
 
-        return redirect()->back()->with('success', 'Data transaksi berhasil diperbarui.');
+        return redirect()->back()->with('update', 'Data transaksi berhasil diperbarui.');
     }
 
+    public function destroy($id)
+    {
+        Transaksi::find($id)->delete();
 
-   public function destroy($id)
-{
-    Transaksi::find($id)->delete();
-
-    return redirect('/transaksi')->with('delete', 'Berhasil delete');
-}
-
+        return redirect('/transaksi')->with('delete', 'Berhasil delete');
+    }
 }
