@@ -158,7 +158,7 @@
                             fill: true,
                         }]
                     };
-            
+
                     // Opsi konfigurasi grafik
                     var options = {
                         responsive: true,
@@ -174,7 +174,7 @@
                             }
                         }
                     };
-            
+
                     // Membuat grafik menggunakan Chart.js
                     var ctx = document.getElementById('orderChart').getContext('2d');
                     var orderChart = new Chart(ctx, {

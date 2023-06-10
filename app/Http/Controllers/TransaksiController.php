@@ -10,19 +10,29 @@ class TransaksiController extends Controller
     {
         $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
 
-        $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
-            return $transaksi->Pengiriman->harga * $transaksi->jumlah;
-        });
+        $totalPengiriman = 0;
+        $totalPenjemputan = 0;
+        $totalLayanan = 0;
 
-        $totalPenjemputan = $datatransaksi->sum(function ($transaksi) {
-            return $transaksi->Penjemputan->harga * $transaksi->jumlah;
-        });
-
-        $totalLayanan = $datatransaksi->sum(function ($transaksi) {
-            return $transaksi->Layanan->harga * $transaksi->jumlah;
-        });
-
+        foreach ($datatransaksi as $transaksi){
+            $totalPengiriman += $transaksi->Pengiriman->harga * $transaksi->jumlah;
+            $totalPenjemputan += $transaksi->Penjemputan->harga * $transaksi->jumlah;
+            $totalLayanan += $transaksi->Layanan->harga * $transaksi->jumlah;
+        }
+        
         $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
+
+        // $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
+        //     return $transaksi->Pengiriman->harga * $transaksi->jumlah;
+        // });
+
+        // $totalPenjemputan = $datatransaksi->sum(function ($transaksi) {
+        //     return $transaksi->Penjemputan->harga * $transaksi->jumlah;
+        // });
+
+        // $totalLayanan = $datatransaksi->sum(function ($transaksi) {
+        //     return $transaksi->Layanan->harga * $transaksi->jumlah;
+        // });
 
         return view('admin.pages.transaksi', [
             'datatransaksi' => $datatransaksi,
