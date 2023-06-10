@@ -13,6 +13,7 @@ Route::post('/updateprofile', [AndroidApiController::class, 'UpdateProfile']);
 Route::get('/apilayanan', [AndroidApiController::class, 'LayananApi']);
 Route::get('/apipenjemputan', [AndroidApiController::class, 'PenjemputanApi']);
 Route::get('/apipengiriman', [AndroidApiController::class, 'PengirimanApi']);
-Route::post('/apipembayaran', [AndroidApiController::class, 'PembayaranApi']);
+Route::get('/apipembayarand', [AndroidApiController::class, 'PengirimanApi']);
+Route::post('/apipembayaran', [AndroidApiController::class, 'PembayarandDropdownApi']);
 Route::post('/apibukti', [AndroidApiController::class, 'apiBukti']);
 Route::post('/transaksi', [AndroidApiController::class, 'createTransaksi']);

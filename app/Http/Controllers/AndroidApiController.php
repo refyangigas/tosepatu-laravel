@@ -64,6 +64,7 @@ class AndroidApiController extends Controller
 
         return response()->json($user);
     }
+
     public function LayananApi(Request $request)
     {
         $layanan = Layanan::all();
@@ -78,6 +79,11 @@ class AndroidApiController extends Controller
     {
         $pengiriman = Pengiriman::all();
         return response()->json($pengiriman);
+    }
+    public function PembayarandDropdownApi(Request $request)
+    {
+        $pembayan = Pembayaran::all();
+        return response()->json($pembayan);
     }
 
     public function PembayaranApi(Request $request)
