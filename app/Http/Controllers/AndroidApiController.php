@@ -75,12 +75,12 @@ class AndroidApiController extends Controller
             ->join('layanan', 'transaksi.id_layanan', '=', 'layanan.id')
             ->select('transaksi.*', 'users.name as nama_user', 'users.email as email_user', 'layanan.name as nama_layanan')
             ->where('users.id', $id_user)
-            ->where('transaksi.status', 'belum_selesai')
+            ->where('transaksi.status', 'Belum Selesai')
             ->get();
 
         return response()->json($transaksi);
     }
-    public function uploadBukti(Request $request)
+    public function apiBukti(Request $request)
     {
         // Validasi request
         $request->validate([
