@@ -10,15 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $datapendapatan = Transaksi::where('status','selesai')->whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->sum('total');
+        $totalpendapatan = Transaksi::where('status', 'Selesai')
+        ->whereMonth('tanggal', date('m'))
+        ->whereYear('tanggal', date('Y'))
+        ->get()
+        ->sum('total');
+
         $datatransaksi = Transaksi::whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->count();
         $user = User::count();
         $datalayanan = Layanan::count();
 
         return view('admin.pages.dashboard', [
-            'totalpendapatan' => $datapendapatan,
+            'totalpendapatan' => $totalpendapatan,
             'totaltransaksi' => $datatransaksi,
             'totaldatauser' => $user,
             'totaldatalayanan' => $datalayanan

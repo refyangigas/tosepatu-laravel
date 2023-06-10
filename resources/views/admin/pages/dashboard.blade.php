@@ -12,24 +12,24 @@
         </div>
 
         <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Pendapatan (Bulan)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{number_format($totalpendapatan)}}</div>
-                                <div class="mt-2 mb-0 text-muted text-xs">
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
+       <!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-uppercase mb-1">Pendapatan (Bulan)</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{ number_format($totalpendapatan, 0, ',', '.') }}</div>
+                    <div class="mt-2 mb-0 text-muted text-xs"></div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-primary"></i>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
             <!-- Earnings (Annual) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card h-100">
