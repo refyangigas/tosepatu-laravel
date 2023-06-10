@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -16,9 +15,9 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->string('alamat');
-            $table->enum('status', ['Selesai', 'Belum Selesai','Pengerjaan']);
+            $table->enum('status', ['Selesai', 'Belum Selesai', 'Pengerjaan']);
             $table->string('jumlah');
-            $table->string('bukti');
+            $table->string('bukti')->nullable();
             $table->date('tanggal');
             $table->bigInteger('total')->default(0);
             $table->timestamps();
