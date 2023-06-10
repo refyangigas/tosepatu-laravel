@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('jumlah');
             $table->string('bukti');
             $table->date('tanggal');
-            $table->decimal('total', 8, 2);
+            $table->bigInteger('total')->default(0);
             $table->timestamps();
         });
     }

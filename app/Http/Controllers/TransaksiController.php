@@ -8,58 +8,55 @@ use Illuminate\Http\Request;
 class TransaksiController extends Controller
 {
     public function index()
-    {
-        $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
+{
+    $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
 
-        $totalPengiriman = 0;
-        $totalPenjemputan = 0;
-        $totalLayanan = 0;
+    $totalPengiriman = 0;
+    $totalPenjemputan = 0;
+    $totalLayanan = 0;
 
-        foreach ($datatransaksi as $transaksi){
-            $totalPengiriman += $transaksi->Pengiriman->harga * $transaksi->jumlah;
-            $totalPenjemputan += $transaksi->Penjemputan->harga * $transaksi->jumlah;
-            $totalLayanan += $transaksi->Layanan->harga * $transaksi->jumlah;
-        }
-
-        $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
-
-        // $totalPengiriman = $datatransaksi->sum(function ($transaksi) {
-        //     return $transaksi->Pengiriman->harga * $transaksi->jumlah;
-        // });
-
-        // $totalPenjemputan = $datatransaksi->sum(function ($transaksi) {
-        //     return $transaksi->Penjemputan->harga * $transaksi->jumlah;
-        // });
-
-        // $totalLayanan = $datatransaksi->sum(function ($transaksi) {
-        //     return $transaksi->Layanan->harga * $transaksi->jumlah;
-        // });
-
-        return view('admin.pages.transaksi', [
-            'datatransaksi' => $datatransaksi,
-            'totalPengiriman' => $totalPengiriman,
-            'totalPenjemputan' => $totalPenjemputan,
-            'totalLayanan' => $totalLayanan,
-            'total' => $total,
-        ]);
+    foreach ($datatransaksi as $transaksi) {
+        $totalPengiriman += $transaksi->Pengiriman->harga * $transaksi->jumlah;
+        $totalPenjemputan += $transaksi->Penjemputan->harga * $transaksi->jumlah;
+        $totalLayanan += $transaksi->Layanan->harga * $transaksi->jumlah;
     }
 
+    $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
+
+    return view('admin.pages.transaksi', [
+        'datatransaksi' => $datatransaksi,
+        'totalPengiriman' => $totalPengiriman,
+        'totalPenjemputan' => $totalPenjemputan,
+        'totalLayanan' => $totalLayanan,
+        'total' => $total,
+    ]);
+}
+
     public function update(Request $request, $id)
-    {
+{
         $request->validate([
-            'status' => 'required',
-            'alamat' => 'required',
-            'jumlah' => 'required',
-        ]);
+        'status' => 'required',
+        'alamat' => 'required',
+        'jumlah' => 'required',
+    ]);
 
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->status = $request->status;
         $transaksi->alamat = $request->alamat;
         $transaksi->jumlah = $request->jumlah;
+
+        // Perhitungan total
+        $totalPengiriman = $transaksi->Pengiriman->harga * $transaksi->jumlah;
+        $totalPenjemputan = $transaksi->Penjemputan->harga * $transaksi->jumlah;
+        $totalLayanan = $transaksi->Layanan->harga * $transaksi->jumlah;
+        $total = $totalPengiriman + $totalPenjemputan + $totalLayanan;
+
+        $transaksi->total = $total;
+
         $transaksi->save();
 
         return redirect()->back()->with('update', 'Data transaksi berhasil diperbarui.');
-    }
+}
 
     public function destroy($id)
     {

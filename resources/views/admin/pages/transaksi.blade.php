@@ -58,7 +58,7 @@
                   <td>{{ $data->User->name}}</td>
                   <td>{{ $data->alamat }}</td>
                   <td><span class="badge badge-success">{{ $data->pembayaran->nama}}</span></td>
-                  <td>{{ $data->Pengiriman->harga * $data->jumlah + $data->Penjemputan->harga * $data->jumlah + $data->Layanan->harga * $data->jumlah }}</td>
+                  <td>Rp{{ number_format($data->Pengiriman->harga * $data->jumlah + $data->Penjemputan->harga * $data->jumlah + $data->Layanan->harga * $data->jumlah, 2, ',', '.') }}</td>
                   <td>{{$data->jumlah}}</td>
                   <td><a href="#" class="btn btn-sm btn-primary">Bukti</a></td>
                   <td>{{ $data->tanggal }}</td>
