@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Layanan;
 use App\Models\Pembayaran;
+use App\Models\Pengiriman;
 use App\Models\Penjemputan;
 use App\Models\Transaksi;
 use Illuminate\Foundation\Auth\User;
@@ -67,6 +68,16 @@ class AndroidApiController extends Controller
     {
         $layanan = Layanan::all();
         return response()->json($layanan);
+    }
+    public function PenjemputanApi(Request $request)
+    {
+        $penjemputan = Penjemputan::all();
+        return response()->json($penjemputan);
+    }
+    public function PengirimanApi(Request $request)
+    {
+        $pengiriman = Pengiriman::all();
+        return response()->json($pengiriman);
     }
 
     public function PembayaranApi(Request $request)
@@ -140,9 +151,13 @@ class AndroidApiController extends Controller
 
             $layanan = Layanan::find($request->input('id_layanan'));
             $penjemputan = Penjemputan::find($request->input('id_penjemputan'));
-            $pembayaran = Pembayaran::find($request->input('id_pembayaran'));
+            $pengiriman = Pengiriman::find($request->input('id_pengiriman'));
 
-            $total = $layanan->harga + $penjemputan->harga + $pembayaran->harga;
+            if (!$pengiriman) {
+                return response()->json(['message' => 'Pengiriman not found'], 404);
+            }
+
+            $total = $layanan->harga + $penjemputan->harga + $pengiriman->harga;
 
             $transaksi = new Transaksi();
             $transaksi->id_pembayaran = $request->input('id_pembayaran');
