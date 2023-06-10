@@ -157,7 +157,6 @@ class AndroidApiController extends Controller
                 return response()->json(['message' => 'Pengiriman not found'], 404);
             }
 
-            $total = $layanan->harga + $penjemputan->harga + $pengiriman->harga;
 
             $transaksi = new Transaksi();
             $transaksi->id_pembayaran = $request->input('id_pembayaran');
@@ -167,8 +166,9 @@ class AndroidApiController extends Controller
             $transaksi->id_user = $request->input('id_user');
             $transaksi->alamat = $request->input('alamat');
             $transaksi->status = 'Belum Selesai';
-            $transaksi->total = $total;
             $transaksi->jumlah = $request->input('jumlah');
+            $total = $layanan->harga * $request->input('jumlah') + $penjemputan->harga + $pengiriman->harga;
+            $transaksi->total = $total;
             $transaksi->tanggal = now();
 
             $transaksi->save();
