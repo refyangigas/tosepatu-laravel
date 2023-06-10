@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
+use App\Models\Pembayaran;
+use App\Models\Penjemputan;
 use App\Models\Transaksi;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -133,9 +135,14 @@ class AndroidApiController extends Controller
                 'id_pengiriman' => 'required',
                 'id_user' => 'required',
                 'alamat' => 'required',
-                'total' => 'required',
                 'jumlah' => 'required',
             ]);
+
+            $layanan = Layanan::find($request->input('id_layanan'));
+            $penjemputan = Penjemputan::find($request->input('id_penjemputan'));
+            $pembayaran = Pembayaran::find($request->input('id_pembayaran'));
+
+            $total = $layanan->harga + $penjemputan->harga + $pembayaran->harga;
 
             $transaksi = new Transaksi();
             $transaksi->id_pembayaran = $request->input('id_pembayaran');
@@ -145,7 +152,7 @@ class AndroidApiController extends Controller
             $transaksi->id_user = $request->input('id_user');
             $transaksi->alamat = $request->input('alamat');
             $transaksi->status = 'Belum Selesai';
-            $transaksi->total = $request->input('total');
+            $transaksi->total = $total;
             $transaksi->jumlah = $request->input('jumlah');
             $transaksi->tanggal = now();
 
