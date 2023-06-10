@@ -52,7 +52,7 @@ Route::put('/jasa-edit-pengiriman/{id}', [JasaController::class, 'editPengiriman
 
 
 Route::get('pengguna', [PenggunaController::class, 'index'])->middleware('auth')->name('pengguna');
-Route::post('/pengguna-add', [PenggunaController::class, 'create'])->middleware('auth')->name('pengguna');
+// Route::post('/pengguna-add', [PenggunaController::class, 'create'])->middleware('auth')->name('pengguna');
 Route::delete('/pengguna-delete/{id}', [PenggunaController::class, 'destroy']);
 Route::put('/pengguna-edit/{id}', [PenggunaController::class, 'edit']);
 

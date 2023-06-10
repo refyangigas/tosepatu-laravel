@@ -123,4 +123,37 @@ class AndroidApiController extends Controller
         return response()->json(['message' => 'Bukti berhasil diunggah'], 200);
     }
 
+    public function createTransaksi(Request $request)
+    {
+        try {
+            $request->validate([
+                'id_pembayaran' => 'required',
+                'id_layanan' => 'required',
+                'id_penjemputan' => 'required',
+                'id_pengiriman' => 'required',
+                'id_user' => 'required',
+                'alamat' => 'required',
+                'total' => 'required',
+                'jumlah' => 'required',
+            ]);
+
+            $transaksi = new Transaksi();
+            $transaksi->id_pembayaran = $request->input('id_pembayaran');
+            $transaksi->id_layanan = $request->input('id_layanan');
+            $transaksi->id_penjemputan = $request->input('id_penjemputan');
+            $transaksi->id_pengiriman = $request->input('id_pengiriman');
+            $transaksi->id_user = $request->input('id_user');
+            $transaksi->alamat = $request->input('alamat');
+            $transaksi->status = 'Belum Selesai';
+            $transaksi->total = $request->input('total');
+            $transaksi->jumlah = $request->input('jumlah');
+            $transaksi->tanggal = now();
+
+            $transaksi->save();
+
+            return response()->json($transaksi, 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }
