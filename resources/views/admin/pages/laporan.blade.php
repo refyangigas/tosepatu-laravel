@@ -4,7 +4,7 @@
 </style>
 <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Laporan Pegawai</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Laporan</li>
@@ -89,46 +89,36 @@
               <button class="btn btn-primary" type="button" id="search-button">Search</button>
             </div>
           </div>
-          <div class="col-auto">
-            <div class="dropdown">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                Status
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Belum Bayar</a></li>
-                <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
-                <li><a class="dropdown-item" href="#">Selesai</a></li>
-                <li><a class="dropdown-item" href="#">Gagal</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <div class="table-responsive p-3">
-      <table class="table align-items-center table-flush" id="dataTable">
-        <thead class="thead-light">
-          <tr>
-            <th>NO</th>
-            <th>STATUS</th>
-            <th>NAMA</th>
-            <th>LAYANAN</th>
-            <th>JUMLAH</th>
-            <th>PEMBAYARAN</th>
-            <th>TOTAL</th>
-            <th>TANGGAL</th>
-          </tr>
-        </thead>
+     <div class="row">
+                    	<div class="col-md-12">
+                    		<h4 class="card-title">Daftar Pegawai</h4>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-md-12">
+                    		<div class="table-responsive">
+		                        <table class="table table-striped table-bordered zero-configuration">
+		                            <thead style="text-align: center;">
+		                                <tr>
+		                                    <th>No</th>
+		                                    <th>Nama</th>
+		                                    <th>Kode Pengguna</th>
+		                                    <th>Posisi</th>
+		                                    <th>Username</th>
+		                                    <th>Aksi</th>
+		                                </tr>
+		                            </thead>
         <tbody>
           <tr>
-            <td>Lael Greer</td>
-            <td><span class="badge badge-success">Terkirim</span></td>
-            <td>Systems Administrator</td>
-            <td>London</td>
-            <td>21</td>
-            <td>2009/02/27</td>
-            <td>$103,500</td>
-            <td>00-00-00</td>
+            <td>1</td>
+           <td>Aditya Purnama</td>
+            <td>016700</td>
+            <td>Admin</td>
+            <td>Aditya</td>
+            <td><span class="badge badge-primary">Lihat</span></td>
           </tr>
         </tbody>
       </table>
