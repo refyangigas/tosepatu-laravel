@@ -54,5 +54,11 @@ class Transaksi extends Model
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
+    public function getTotalAttribute()
+    {
+    return ($this->pengiriman->harga * $this->jumlah) + ($this->penjemputan->harga * $this->jumlah) + ($this->layanan->harga * $this->jumlah);
+    }
+
+
 
 }
