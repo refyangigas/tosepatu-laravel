@@ -3,13 +3,12 @@
 @section('content')
 <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Laporan</li>
+                <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
             </ol>
         </div>
-
 <div class="col-xl-12 mb-4">
   <div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -70,6 +69,9 @@
                                     <td class="text-truncate">Rp. {{ number_format($data->total, 0, ',', '.') }}</td>
                                     <td>{{ $data->jumlah }}</td>
                                     <td>
+                                      @if ($data->status == 'Belum Selesai')
+                                          <span class="text-danger">{{ $data->status }}</span>
+                                      @else
                                           @if ($data->bukti)
                                               <div class="d-flex justify-content-start">
                                                   <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ModalBukti{{ $data->id }}" style="width: 90px;">Lihat Bukti</button>
@@ -95,6 +97,7 @@
                                           @else
                                               <button type="button" class="btn btn-sm btn-primary" disabled>Tidak Ada Bukti</button>
                                           @endif
+                                      @endif
                                   </td>                                  
                                   <td class="text-truncate">{{ $data->tanggal }}</td>
                                     <td>
@@ -116,7 +119,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                              <img src="{{ asset('uploads/' . $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
+                                                <img src="{{ asset( $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

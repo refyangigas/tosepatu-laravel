@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+</style>
 <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
@@ -9,61 +10,73 @@
                 <li class="breadcrumb-item active" aria-current="page">Laporan</li>
             </ol>
         </div>
-        <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-        	<div class="card">
-                <div class="card-body">
-                	<div class="row">
-		                <div class="col-3">
-		                    <div class="card card-widget">
-		                        <div class="card-body gradient-7">
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <h2 class="card-widget__title">Baru</h2>
-		                                  
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-3">
-		                    <div class="card card-widget">
-		                        <div class="card-body gradient-3">
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <h2 class="card-widget__title">Proses</h2>
-		                                    
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-3">
-		                    <div class="card card-widget">
-		                        <div class="card-body gradient-9">
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <h2 class="card-widget__title">Selesai</h2>
-		                                    
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-3">
-		                    <div class="card card-widget">
-		                        <div class="card-body gradient-1">
-		                            <div class="media">
-		                                <div class="media-body">
-		                                    <h2 class="card-widget__title">Diambil</h2>
+        <div class="row mb-3">
 
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-uppercase mb-1">Baru</div>
+                    
+                    <div class="mt-2 mb-0 text-muted text-xs"></div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-user fa-2x text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Proses</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-rocket fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1"> Selesai</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-edit fa-2x text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Diambil</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-gift fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
  <!-- Datatables -->
  <div class="col-lg-12">
   <div class="card mb-4">
@@ -123,4 +136,3 @@
   </div>
 </div>
 @endsection
- 
