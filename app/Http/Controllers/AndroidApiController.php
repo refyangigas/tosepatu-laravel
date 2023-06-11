@@ -38,7 +38,7 @@ class AndroidApiController extends Controller
 
         return response()->json($user);
     }
-    public static function UpdateProfile(Request $request)
+    public function UpdateProfile(Request $request)
     {
         $user = User::findOrFail($request->input('id_user'));
 
