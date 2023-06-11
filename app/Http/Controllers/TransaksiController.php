@@ -36,7 +36,7 @@ class TransaksiController extends Controller
     if ($request->hasFile('bukti')) { 
         $file = $request->file('bukti'); 
         $filename = time().'.'.$file->getClientOriginalExtension();
-        $file->move(public_path('uploads/bukti'), $filename);
+        $file->move(public_path('uploads'), $filename);
         $transaksi->bukti = $filename;
     }
 

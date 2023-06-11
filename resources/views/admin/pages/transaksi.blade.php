@@ -70,9 +70,6 @@
                                     <td class="text-truncate">Rp. {{ number_format($data->total, 0, ',', '.') }}</td>
                                     <td>{{ $data->jumlah }}</td>
                                     <td>
-                                      @if ($data->status == 'Belum Selesai')
-                                          <span class="text-danger">{{ $data->status }}</span>
-                                      @else
                                           @if ($data->bukti)
                                               <div class="d-flex justify-content-start">
                                                   <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ModalBukti{{ $data->id }}" style="width: 90px;">Lihat Bukti</button>
@@ -98,7 +95,6 @@
                                           @else
                                               <button type="button" class="btn btn-sm btn-primary" disabled>Tidak Ada Bukti</button>
                                           @endif
-                                      @endif
                                   </td>                                  
                                   <td class="text-truncate">{{ $data->tanggal }}</td>
                                     <td>
@@ -120,7 +116,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="{{ asset( $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
+                                              <img src="{{ asset('uploads/' . $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
