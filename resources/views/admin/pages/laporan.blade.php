@@ -9,6 +9,61 @@
                 <li class="breadcrumb-item active" aria-current="page">Laporan</li>
             </ol>
         </div>
+        <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+        	<div class="card">
+                <div class="card-body">
+                	<div class="row">
+		                <div class="col-3">
+		                    <div class="card card-widget">
+		                        <div class="card-body gradient-7">
+		                            <div class="media">
+		                                <div class="media-body">
+		                                    <h2 class="card-widget__title">Baru</h2>
+		                                  
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-3">
+		                    <div class="card card-widget">
+		                        <div class="card-body gradient-3">
+		                            <div class="media">
+		                                <div class="media-body">
+		                                    <h2 class="card-widget__title">Proses</h2>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-3">
+		                    <div class="card card-widget">
+		                        <div class="card-body gradient-9">
+		                            <div class="media">
+		                                <div class="media-body">
+		                                    <h2 class="card-widget__title">Selesai</h2>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-3">
+		                    <div class="card card-widget">
+		                        <div class="card-body gradient-1">
+		                            <div class="media">
+		                                <div class="media-body">
+		                                    <h2 class="card-widget__title">Diambil</h2>
+
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
  <!-- Datatables -->
  <div class="col-lg-12">
   <div class="card mb-4">
