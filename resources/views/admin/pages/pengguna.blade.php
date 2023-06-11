@@ -2,6 +2,14 @@
 
 @section('content')
  <!-- Invoice Example -->
+ <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Pengguna</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pengguna</li>
+            </ol>
+        </div>
 <div class="col-xl-12  mb-4">
  <div class="card">
    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
