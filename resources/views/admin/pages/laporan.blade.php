@@ -118,7 +118,7 @@
             <td>016700</td>
             <td>Admin</td>
             <td>Aditya</td>
-            <td><span class="badge badge-primary">Lihat</span></td>
+            <td><span class="badge badge-warning">Lihat</span></td>
           </tr>
         </tbody>
       </table>
