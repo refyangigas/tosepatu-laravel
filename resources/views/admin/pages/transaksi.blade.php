@@ -178,7 +178,6 @@
                                                         <select name="status" class="form-control" aria-label="Default select example">
                                                             <option value="selesai" {{ $data->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                                             <option value="pengerjaan" {{ $data->status == 'pengerjaan' ? 'selected' : '' }}>Pengerjaan</option>
-                                                            <option value="belum_selesai" {{ $data->status == 'belum_selesai' ? 'selected' : '' }}>Belum Selesai</option>
                                                         </select>
                                                     </div>
 
