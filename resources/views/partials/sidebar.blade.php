@@ -22,10 +22,10 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/jasa">
-            <i class="fas fa-tools"></i>
-            <span>Jasa</span>
+            <i class="fas fa-desktop"></i>
+            <span>Layanan</span>
         </a>
-    </li>
+    </li>        
     <li class="nav-item">
         <a class="nav-link" href="/pengguna">
             <i class="fas fa-users"></i>
