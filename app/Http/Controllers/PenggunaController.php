@@ -15,7 +15,7 @@ class PenggunaController extends Controller
     public function index()
     {
         $datauser = User::where('id_role', '2')->get();
-        return view('admin.pages.Pengguna', compact('datauser'));
+        return view('admin.pages.pengguna', compact('datauser'));
     }
 
 
