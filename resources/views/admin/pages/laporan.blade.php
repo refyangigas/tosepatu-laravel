@@ -55,13 +55,13 @@
         <thead class="thead-light">
           <tr>
             <th>NO</th>
-            <th>STATUS</th>
-            <th>NAMA</th>
-            <th>LAYANAN</th>
-            <th>JUMLAH</th>
-            <th>PEMBAYARAN</th>
-            <th>TOTAL</th>
-            <th>TANGGAL</th>
+            <th>Status</th>
+            <th>Nama</th>
+            <th>Layanan</th>
+            <th>Jumlah</th>
+            <th>Pembayaran</th>
+            <th>Total</th>
+            <th>tanggal</th>
           </tr>
         </thead>
         <tbody>
