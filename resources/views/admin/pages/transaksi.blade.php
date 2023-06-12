@@ -27,32 +27,27 @@
         </div>
       </div>
     </div>
-    <div class="card-body">
-      <div class="row mb-2">
-        <div class="col-lg-6">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Sort By
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Nama Asc (A - Z)</a></li>
-              <li><a class="dropdown-item" href="#">Nama Desc (Z - A)</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6 text-end">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Status
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Selesai</a></li>
-              <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
-              <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
-            </ul>
-          </div>
-        </div>
+    <div class="col-lg-6 text-end mt-3">
+      <div class="btn-group mr-2" style="margin-bottom: 10px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+          Sort By
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Nama Asc (A - Z)</a></li>
+          <li><a class="dropdown-item" href="#">Nama Desc (Z - A)</a></li>
+        </ul>
       </div>
+      <div class="btn-group" style="margin-bottom: 10px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+          Status
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Selesai</a></li>
+          <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
+          <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
+        </ul>
+      </div>
+    </div>
     </div>
     
       

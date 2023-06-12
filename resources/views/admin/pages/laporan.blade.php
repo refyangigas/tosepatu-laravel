@@ -18,22 +18,30 @@
         </nav>
       </div>
       <div class="container">
-  <div class="col-xl-12 mb-4">
-    <div class="card">
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <div class="col-lg-6">
-          <h4>Filter Laporan</h4>
-          <p>Mulai Tanggal</p>
-          <input class="form-control" type="date" id="myInput">
-          <br>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
     <div class="card">
         <div class="table-responsive p-3">
+        <h4 class="m-0">Filter Laporan</h4>
+        <br> 
+        <table class="table align-items-center table-flush" id="dataTable">
+        <thead class="thead-light">
+          <tr>
+            <th>Mulai Tanggal</th>
+            <th>Sampai Tanggal</th>
+            <th>Status</th>
+            <th>Tampilkan</th>
+            </thead>
+        <tbody>
+          <tr>
+            <td><input class="form-control" type="date" id="myInput"></td>
+            <td><input class="form-control" type="date" id="myInput"></td>
+            <td><button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Status
+            </button></td>
+            <td><a href="#"  data-toggle="modal" data-target="#ModalAddtransaksi"
+            id="#myBtn" class="btn btn-sm btn-primary">Tampilkan</a></td>
+            </tbody>
+      </table>
+      <div class="table-responsive p-3">
       <table class="table align-items-center table-flush" id="dataTable">
         <thead class="thead-light">
           <tr>
@@ -62,7 +70,6 @@
       </table>
     </div>
   </div>
-</div>
 </div>
 
 @endsection

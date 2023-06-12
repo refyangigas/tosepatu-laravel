@@ -4,10 +4,10 @@
 <!-- Service Price Table -->
 <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Jasa</h1>
+            <h1 class="h3 mb-0 text-gray-800"> Data Layanan</h1>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Jasa</li>
+                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Layanan</li>
             </ol>
         </div>
 <div class="col-xl-12 mb-4">
