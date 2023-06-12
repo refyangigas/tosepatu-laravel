@@ -66,7 +66,3 @@ Route::put('/profile-edit/{id}', [ProfileController::class, 'edit']);
 // ], function(){
 //     Route::post('auth/login', [AuthController::class,'login'])->name('login');
 // });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
