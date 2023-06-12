@@ -3,14 +3,17 @@
 @section('content')
       <div class="col-lg-6">
         <h4 class="m-0">Data Laporan</h4> 
-        <nav aria-label="breadcrumb"  class="d-flex align-items-start justify-content-start">
+        <nav aria-label="breadcrumb" class="d-flex align-items-start justify-content-start">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#">Transaksi</a></li>
-            <li class="breadcrumb-item"><a href="#">Jasa</a></li>
-            <li class="breadcrumb-item"><a href="#">Pengguna</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Laporan</li>
-            <li class="breadcrumb-item"><a href="#">Profil</a></li>
+              <li class="breadcrumb-item">
+                  <a href="dashboard">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                  <i class="fas fa-chart-bar"></i>
+                  <span>Laporan</span>
           </ol>
         </nav>
       </div>
@@ -29,47 +32,37 @@
   </div>
 </div>
 <div class="container">
-  <div class="col-xl-12 mb-4">
     <div class="card">
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <div class="col-lg-6">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@mail.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@greatstuff.com</td>
-      </tr>
-      <tr>
-        <td>Anja</td>
-        <td>Ravendale</td>
-        <td>a_r@test.com</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-      </div>
+        <div class="table-responsive p-3">
+      <table class="table align-items-center table-flush" id="dataTable">
+        <thead class="thead-light">
+          <tr>
+            <th>NO</th>
+            <th>STATUS</th>
+            <th>NAMA</th>
+            <th>LAYANAN</th>
+            <th>JUMLAH</th>
+            <th>PEMBAYARAN</th>
+            <th>TOTAL</th>
+            <th>TANGGAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lael Greer</td>
+            <td><span class="badge badge-success">Terkirim</span></td>
+            <td>Systems Administrator</td>
+            <td>London</td>
+            <td>21</td>
+            <td>2009/02/27</td>
+            <td>$103,500</td>
+            <td>00-00-00</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-  <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
 </div>
 
 @endsection
