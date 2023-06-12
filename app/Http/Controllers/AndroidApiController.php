@@ -94,6 +94,7 @@ class AndroidApiController extends Controller
             ->join('layanan', 'transaksi.id_layanan', '=', 'layanan.id')
             ->select('transaksi.*', 'users.name as nama_user', 'users.email as email_user', 'layanan.name as nama_layanan')
             ->where('users.id', $id_user)
+            ->where('id_pembayaran', 2)
             ->where('transaksi.status', 'Belum Selesai')
             ->get();
 
