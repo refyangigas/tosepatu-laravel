@@ -1,19 +1,22 @@
 @extends('layouts.main')
 @section('content')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xxxxxxx" crossorigin="anonymous" />
 <div class="col-xl-12 mb-4">
   <div class="card">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <div class="col-lg-6">
         <h4 class="m-0">Data Transaksi</h4> 
-        <nav aria-label="breadcrumb"  class="d-flex align-items-start justify-content-start">
+        <nav aria-label="breadcrumb" class="d-flex align-items-start justify-content-start">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
-            <li class="breadcrumb-item"><a href="#">Jasa</a></li>
-            <li class="breadcrumb-item"><a href="#">Pengguna</a></li>
-            <li class="breadcrumb-item"><a href="#">Laporan</a></li>
-            <li class="breadcrumb-item"><a href="#">Profil</a></li>
+              <li class="breadcrumb-item">
+                  <a href="dashboard">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                  <i class="fas fa-exchange-alt"></i>
+                  <span>Transaksi</span>
           </ol>
         </nav>
       </div>
@@ -25,21 +28,34 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="row mb-4">
-        <div class="col-lg-12">
-          <div class="dropdown">
+      <div class="row mb-2">
+        <div class="col-lg-6">
+          <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Filter
+              Sort By
             </button>
             <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Nama Asc (A - Z)</a></li>
+              <li><a class="dropdown-item" href="#">Nama Desc (Z - A)</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 text-end">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Status
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Selesai</a></li>
               <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
               <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
-              <li><a class="dropdown-item" href="#">Selesai</a></li>
-              <li><a class="dropdown-item" href="#">Gagal</a></li>
             </ul>
           </div>
         </div>
       </div>
+    </div>
+    
+      
       <div class="table-responsive">
         <table class="table align-items-center table-flush table-responsive-sm">
           <thead class="thead-light">

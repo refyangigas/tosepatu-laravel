@@ -5,16 +5,45 @@
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <nav aria-label="breadcrumb"  class="d-flex align-items-start justify-content-start">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/transaksi">Transaksi</a></li>
-            <li class="breadcrumb-item"><a href="#">Jasa</a></li>
-            <li class="breadcrumb-item"><a href="#">Pengguna</a></li>
-            <li class="breadcrumb-item"><a href="#">Laporan</a></li>
-            <li class="breadcrumb-item"><a href="#">Profil</a></li>
-          </ol>
-        </nav>
+            <nav aria-label="breadcrumb" class="d-flex align-items-start justify-content-start">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/transaksi">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="jasa">
+                            <i class="fas fa-tools"></i>
+                            <span>Jasa</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="pengguna">
+                            <i class="fas fa-users"></i>
+                            <span>Pengguna</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="laporan">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Laporan</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="profile">
+                            <i class="fas fa-user"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+            
         </div>
 
         <div class="row mb-3">
