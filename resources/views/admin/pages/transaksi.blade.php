@@ -1,77 +1,97 @@
 @extends('layouts.main')
-
 @section('content')
-<div class="container-fluid" id="container-wrapper">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
-            </ol>
-        </div>
+
 <div class="col-xl-12 mb-4">
   <div class="card">
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <div class="col-lg-12">
-              <div class="card mb-4">
-                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <div class="container">                          
-                            <div class="row justify-content-end">
-                                <div class="col-auto">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button">
-                                        <button class="btn btn-primary" type="button" id="search-button">Search</button>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                                            Status
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
-                                            <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
-                                            <li><a class="dropdown-item" href="#">Selesai</a></li>
-                                            <li><a class="dropdown-item" href="#">Gagal</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table align-items-center table-flush table-responsive-sm">
-                        <thead class="thead-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Status</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Pembayaran</th>
-                                    <th>Total</th>
-                                    <th>Jumlah</th>
-                                    <th>Bukti</th>
-                                    <th>Tanggal</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <div class="col-lg-6">
+        <h4 class="m-0">Data Transaksi</h4> 
+        <nav aria-label="breadcrumb"  class="d-flex align-items-start justify-content-start">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
+            <li class="breadcrumb-item"><a href="#">Jasa</a></li>
+            <li class="breadcrumb-item"><a href="#">Pengguna</a></li>
+            <li class="breadcrumb-item"><a href="#">Laporan</a></li>
+            <li class="breadcrumb-item"><a href="#">Profil</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-lg-6 text-right">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button">
+          <button class="btn btn-primary" type="button" id="search-button">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row mb-4">
+        <div class="col-lg-12">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Filter
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
+              <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
+              <li><a class="dropdown-item" href="#">Selesai</a></li>
+              <li><a class="dropdown-item" href="#">Gagal</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-responsive-sm">
+          <thead class="thead-light">
+            <tr>
+              <th>No</th>
+              <th>Status</th>
+              <th>Nama</th>
+              <th>Alamat</th>
+              <th>Pembayaran</th>
+              <th>Total</th>
+              <th>Jumlah</th>
+              <th>Bukti</th>
+              <th>Tanggal</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
                                 @php
                                 $no = 1;
                                 @endphp
                                 @foreach($datatransaksi as $data)
                                 <tr>
                                     <td><a href="#">{{ $no++ }}</a></td>
-                                    <td><span class="badge badge-success">{{$data->status}}</span></td>
+                                    <td>
+                                      @if($data->status == 'Belum Selesai')
+                                          <span class="badge badge-belum-selesai font-size-lg">{{$data->status}}</span>
+                                      @elseif($data->status == 'Pengerjaan')
+                                          <span class="badge badge-pengerjaan font-size-lg">{{$data->status}}</span>
+                                      @elseif($data->status == 'Selesai')
+                                          <span class="badge badge-selesai font-size-lg">{{$data->status}}</span>
+                                      @endif
+                                  </td>
                                     <td>{{ $data->User->name }}</td>
-                                    <td>{{ $data->alamat }}</td>
-                                    <td><span class="badge badge-success">{{ $data->pembayaran->nama }}</span></td>
+                                    
+                                    <td class="text-truncate" style="max-width: 250px; overflow: hidden;">
+                                      <span class="truncated-address" onclick="showFullAddress(this)">{{ $data->alamat }}</span>
+                                    </td>
+                                    
+                                    <script>
+                                    function showFullAddress(element) {
+                                      if (element.classList.contains('truncated')) {
+                                        element.classList.remove('truncated');
+                                      } else {
+                                        element.classList.add('truncated');
+                                      }
+                                    }
+                                    </script>
+
+                                    <td><span class="badge badge-success font-size-lg">{{ $data->pembayaran->nama }}</span></td>
                                     <td class="text-truncate">Rp. {{ number_format($data->total, 0, ',', '.') }}</td>
                                     <td>{{ $data->jumlah }}</td>
                                     <td>
-                                      @if ($data->status == 'Belum Selesai')
-                                          <span class="text-danger">{{ $data->status }}</span>
-                                      @else
                                           @if ($data->bukti)
                                               <div class="d-flex justify-content-start">
                                                   <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ModalBukti{{ $data->id }}" style="width: 90px;">Lihat Bukti</button>
@@ -95,9 +115,10 @@
                                                   </div>
                                               </div>
                                           @else
-                                              <button type="button" class="btn btn-sm btn-primary" disabled>Tidak Ada Bukti</button>
+                                            <div class="d-flex justify-content-start">
+                                              <button type="button" class="btn btn-sm btn-primary"  style="width: 90px;" disabled>Tidak Ada Bukti</button>
+                                            </div>
                                           @endif
-                                      @endif
                                   </td>                                  
                                   <td class="text-truncate">{{ $data->tanggal }}</td>
                                     <td>
@@ -119,7 +140,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="{{ asset( $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
+                                              <img src="{{ asset('uploads/' . $data->bukti) }}" class="img-fluid" alt="Bukti Transaksi">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -247,6 +268,44 @@
     });
   });
 </script>
+
+<style>
+  .badge-belum-selesai {
+      background-color: #808080;
+      color: #ffffff; /* Warna teks menjadi putih */
+  }
+
+  .badge-pengerjaan {
+      background-color: #ffd700;
+      color: #ffffff; /* Warna teks menjadi putih */
+  }
+
+  .badge-selesai {
+      background-color: #38d138;
+      color: #ffffff; /* Warna teks menjadi putih */
+  }
+</style>
+
+<style>
+  .truncated-address {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .truncated-address.truncated {
+    white-space: normal;
+  }
+  </style>
+  <style>
+  .breadcrumb {
+    margin-left: 0;
+  }
+</style>
+
+
 @endsection
 
 

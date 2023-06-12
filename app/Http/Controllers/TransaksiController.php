@@ -4,15 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+
 
 class TransaksiController extends Controller
 {
     public function index()
     {
+        $perPage = 10;
+        $currentPage = request()->get('page', 1);
         $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
-
+        $collection = new Collection($datatransaksi);
+        $total = $collection->count();
+        $start = ($currentPage - 1) * $perPage;
+        $sliced = $collection->slice($start, $perPage);
+        $paginatedItems = $sliced->values();
+        $paginated = new LengthAwarePaginator($paginatedItems, $total, $perPage, $currentPage);
+    
+    
         return view('admin.pages.transaksi', [
-            'datatransaksi' => $datatransaksi,       
+            'datatransaksi' => $datatransaksi,   
+            'paginated' => $paginated,
+            'currentPage' => $currentPage,
+            'perPage' => $perPage,    
         ]);
     }
 
