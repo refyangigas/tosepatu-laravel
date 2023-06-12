@@ -38,9 +38,9 @@
         </ul>
       </div>
       <div class="btn-group" style="margin-bottom: 10px;">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-          Status
-        </button>
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+            Status
+          </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">Selesai</a></li>
           <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
@@ -138,7 +138,6 @@
                                           <a href="#" data-toggle="modal" data-target="#ModalDeleteTransaksi{{ $data->id }}" class="btn btn-sm btn-danger">Delete</a>
                                       </div>
                                   </td>
-                                  
                                 </tr>
                                 <!-- Modal -->
                                 <div class="modal fade" id="ModalBukti{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

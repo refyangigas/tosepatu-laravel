@@ -33,7 +33,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('laporan') }}">
+        <a class="nav-link" href="/laporan">
             <i class="fas fa-chart-bar"></i>
             <span>Laporan</span>
         </a>
