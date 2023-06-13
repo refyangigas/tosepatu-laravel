@@ -13,6 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $activePage = 'dashboard';
         $pendapatan = Transaksi::selectRaw('MONTH(tanggal) as bulan, SUM(total) as pendapatan')
             ->where('status', 'Selesai')
             ->whereYear('tanggal', Carbon::now()->year)
@@ -36,6 +37,7 @@ class DashboardController extends Controller
         $datalayanan = Layanan::count();
 
         return view('admin.pages.dashboard', [
+            'activePage' => $activePage,
             'totalpendapatan' => $totalpendapatan,
             'totaltransaksi' => $datatransaksi,
             'totaldatauser' => $user,
