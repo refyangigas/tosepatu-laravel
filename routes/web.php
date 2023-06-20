@@ -29,6 +29,10 @@ Route::middleware('only_sign_in')->group(function () {
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard/pendapatan', [DashboardController::class, 'getPendapatan'])->middleware('auth')->name('dashboard.pendapatan');
+Route::get('/dashboard/get-jumlah-transaksi', [DashboardController::class, 'getJumlahTransaksi']);
+
+
 
 // Route::get('transaksi', [TransaksiController::class, 'index'])->middleware('auth')->name('transaksi');
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');

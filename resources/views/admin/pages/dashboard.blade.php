@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
     <!-- Container Fluid-->
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -19,8 +20,8 @@
                     </li>
                     <li class="breadcrumb-item">
                         <a href="jasa">
-                            <i class="fas fa-tools"></i>
-                            <span>Jasa</span>
+                            <i class="fas fa-desktop"></i>
+                            <span>Layanan</span>
                         </a>
                     </li>
                     <li class="breadcrumb-item">
@@ -120,7 +121,7 @@
                 </div>
             </div>
 
-            <!-- Area Chart -->
+<!-- Area Chart -->
 <div class="col-xl-8 col-lg-7">
     <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary text-white">
@@ -133,185 +134,103 @@
         </div>
     </div>
 </div>
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-                <div class="card mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Jumlah Orderan (Bulan)</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Month <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Select Period</div>
-                                <a class="dropdown-item" href="#">Today</a>
-                                <a class="dropdown-item" href="#">Week</a>
-                                <a class="dropdown-item active" href="#">Month</a>
-                                <a class="dropdown-item" href="#">This Year</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container" style="position: relative; height: 260px;">
-                            <canvas id="orderChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a class="m-0 small text-primary card-link" href="#">View More <i
-                                class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function(event) {
-                    // Data untuk grafik
-                    var data = {
-                        labels: ["January", "February", "March", "April", "May", "June"],
-                        datasets: [{
-                            label: "Order Quantity",
-                            data: [600, 500, 455, 400, 200],
-                            backgroundColor: "rgba(54, 162, 235, 0.2)",
-                            borderColor: "rgba(54, 162, 235, 1)",
-                            borderWidth: 1,
-                            fill: true,
-                        }]
-                    };
 
-                    // Opsi konfigurasi grafik
-                    var options = {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        tooltips: {
-                            callbacks: {
-                                title: function(tooltipItem, data) {
-                                    return 'Month: ' + data.labels[tooltipItem[0].index];
-                                },
-                                label: function(tooltipItem, data) {
-                                    return 'Orders: ' + tooltipItem.yLabel;
-                                }
-                            }
-                        }
-                    };
 
-                    // Membuat grafik menggunakan Chart.js
-                    var ctx = document.getElementById('orderChart').getContext('2d');
-                    var orderChart = new Chart(ctx, {
-                        type: 'line',
-                        data: data,
-                        options: options
-                    });
-                });
-            </script>
-            <!-- Invoice Example -->
-            <div class="col-xl-8 col-lg-7 mb-4">
-                <div class="card">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                        <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
-                                class="fas fa-chevron-right"></i></a>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Item</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><a href="#">RA0449</a></td>
-                                    <td>Udin Wayang</td>
-                                    <td>Nasi Padang</td>
-                                    <td><span class="badge badge-success">Delivered</span></td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">RA5324</a></td>
-                                    <td>Jaenab Bajigur</td>
-                                    <td>Gundam 90' Edition</td>
-                                    <td><span class="badge badge-warning">Shipping</span></td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">RA8568</a></td>
-                                    <td>Rivat Mahesa</td>
-                                    <td>Oblong T-Shirt</td>
-                                    <td><span class="badge badge-danger">Pending</span></td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">RA1453</a></td>
-                                    <td>Indri Junanda</td>
-                                    <td>Hat Rounded</td>
-                                    <td><span class="badge badge-info">Processing</span></td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">RA1998</a></td>
-                                    <td>Udin Cilok</td>
-                                    <td>Baby Powder</td>
-                                    <td><span class="badge badge-success">Delivered</span></td>
-                                    <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer"></div>
-                </div>
-            </div>
-            <!-- Message From Customer-->
-            <div class="col-xl-4 col-lg-5 ">
-                <div class="card">
-                    <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
-                    </div>
-                    <div>
-                        <div class="customer-message align-items-center">
-                            <a class="font-weight-bold" href="#">
-                                <div class="text-truncate message-title">Hi there! I am wondering if you can help me with a
-                                    problem I've been having.</div>
-                                <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok · 58m</div>
-                            </a>
-                        </div>
-                        <div class="customer-message align-items-center">
-                            <a href="#">
-                                <div class="text-truncate message-title">But I must explain to you how all this mistaken
-                                    idea
-                                </div>
-                                <div class="small text-gray-500 message-time">Nana Haminah · 58m</div>
-                            </a>
-                        </div>
-                        <div class="customer-message align-items-center">
-                            <a class="font-weight-bold" href="#">
-                                <div class="text-truncate message-title">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit
-                                </div>
-                                <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau · 25m</div>
-                            </a>
-                        </div>
-                        <div class="customer-message align-items-center">
-                            <a class="font-weight-bold" href="#">
-                                <div class="text-truncate message-title">At vero eos et accusamus et iusto odio dignissimos
-                                    ducimus qui blanditiis
-                                </div>
-                                <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang · 54m</div>
-                            </a>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a class="m-0 small text-primary card-link" href="#">View More <i
-                                    class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+  <!-- Bar Chart -->
+<div class="col-xl-4 col-lg-5">
+    <div class="card mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Jumlah Orderan (Bulan)</h6>
+      </div>
+      <div class="card-body">
+        <div class="chart-container" style="height: 320px;">
+          <canvas id="orderChart"></canvas>
         </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      // Mendapatkan data dari server
+      fetch('/dashboard/get-jumlah-transaksi')
+        .then(response => response.json())
+        .then(data => {
+          // Data untuk grafik
+          var chartData = {
+            labels: data.labels,
+            datasets: [{
+              label: "Jumlah Orderan",
+              data: data.data,
+              backgroundColor: "rgba(54, 162, 235, 0.2)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+              fill: true,
+            }]
+          };
+  
+          // Opsi konfigurasi grafik
+          var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: {
+              callbacks: {
+                title: function(tooltipItem, data) {
+                  return 'Minggu ' + (tooltipItem[0].index + 1);
+                },
+                label: function(tooltipItem, data) {
+                  return 'Order: ' + tooltipItem.yLabel;
+                }
+              }
+            },
+            scales: {
+              x: {
+                display: true,
+                title: {
+                  display: true,
+                  text: 'Minggu'
+                }
+              },
+              y: {
+                display: true,
+                title: {
+                  display: true,
+                  text: 'Order Quantity'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  callback: function(value, index, values) {
+                    // Mengatur format sumbu y sesuai kondisi jumlah orderan
+                    if (value >= 1000) {
+                      return (value / 1000) + 'k';
+                    } else if (value >= 100) {
+                      return (value / 100) + '00';
+                    } else if (value >= 10) {
+                      return (value / 10) + '0';
+                    } else {
+                      return value;
+                    }
+                  }
+                }
+              }
+            }
+          };
+  
+          // Membuat grafik menggunakan Chart.js
+          var ctx = document.getElementById('orderChart').getContext('2d');
+          var orderChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: options
+          });
+        });
+    });
+  </script>
+  
+
 
         <!-- Modal Logout -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"

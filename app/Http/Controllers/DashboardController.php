@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use NumberFormatter;
 use App\Models\Layanan;
 use App\Models\Transaksi;
 use Illuminate\Foundation\Auth\User;
@@ -13,17 +13,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $activePage = 'dashboard';
-        $pendapatan = Transaksi::selectRaw('MONTH(tanggal) as bulan, SUM(total) as pendapatan')
-            ->where('status', 'Selesai')
-            ->whereYear('tanggal', Carbon::now()->year)
-            ->groupBy('bulan')
-            ->orderBy('bulan')
-            ->get();
-        
-        $labels = $pendapatan->pluck('bulan');
-        $data = $pendapatan->pluck('pendapatan');
-
         $totalpendapatan = Transaksi::where('status', 'Selesai')
             ->whereMonth('tanggal', date('m'))
             ->whereYear('tanggal', date('Y'))
@@ -37,14 +26,81 @@ class DashboardController extends Controller
         $datalayanan = Layanan::count();
 
         return view('admin.pages.dashboard', [
-            'activePage' => $activePage,
             'totalpendapatan' => $totalpendapatan,
             'totaltransaksi' => $datatransaksi,
             'totaldatauser' => $user,
             'totaldatalayanan' => $datalayanan,
-            'datapendapatan' => $data,
-            'labelpendapatan' => $labels,
-            'transaksis' => Transaksi::all(), // Menambahkan data transaksi untuk grafik pendapatan bulanan
+        ]);
+    }
+    public function getPendapatan()
+    {
+        $pendapatan = Transaksi::selectRaw('WEEK(tanggal) as minggu, SUM(total) as pendapatan')
+            ->where('status', 'Selesai')
+            ->whereMonth('tanggal', date('m'))
+            ->whereYear('tanggal', date('Y'))
+            ->groupBy('minggu')
+            ->orderBy('minggu')
+            ->pluck('pendapatan')
+            ->toArray();
+    
+        $formattedPendapatan = [];
+        foreach ($pendapatan as $amount) {
+            $formattedPendapatan[] = $amount;
+        }
+    
+        $labels = Transaksi::selectRaw('WEEK(tanggal) as minggu')
+            ->where('status', 'Selesai')
+            ->whereMonth('tanggal', date('m'))
+            ->whereYear('tanggal', date('Y'))
+            ->groupBy('minggu')
+            ->orderBy('minggu')
+            ->pluck('minggu')
+            ->toArray();
+    
+        $formattedLabels = [];
+        $weekNumber = 1;
+        foreach ($labels as $minggu) {
+            $formattedLabels[] = "Minggu " . $weekNumber;
+            $weekNumber++;
+        }
+    
+        return response()->json([
+            'labels' => $formattedLabels,
+            'data' => $formattedPendapatan
+        ]);
+    }
+
+    public function getJumlahTransaksi()
+    {
+        $jumlahTransaksi = Transaksi::selectRaw('WEEK(tanggal) as minggu, COUNT(*) as jumlah')
+            ->where('status', 'Selesai')
+            ->whereMonth('tanggal', date('m'))
+            ->whereYear('tanggal', date('Y'))
+            ->groupBy('minggu')
+            ->orderBy('minggu')
+            ->pluck('jumlah')
+            ->toArray();
+
+        $labels = Transaksi::selectRaw('WEEK(tanggal) as minggu')
+            ->where('status', 'Selesai')
+            ->whereMonth('tanggal', date('m'))
+            ->whereYear('tanggal', date('Y'))
+            ->groupBy('minggu')
+            ->orderBy('minggu')
+            ->pluck('minggu')
+            ->toArray();
+
+        $formattedLabels = [];
+        $weekNumber = 1;
+        foreach ($labels as $minggu) {
+            $formattedLabels[] = "Minggu " . $weekNumber;
+            $weekNumber++;
+        }
+
+        return response()->json([
+            'labels' => $formattedLabels,
+            'data' => $jumlahTransaksi,
         ]);
     }
 }
+    
