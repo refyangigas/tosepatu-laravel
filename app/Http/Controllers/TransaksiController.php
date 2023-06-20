@@ -8,29 +8,57 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 
+
 class TransaksiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $perPage = 10;
-        $currentPage = request()->get('page', 1);
-        $datatransaksi = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran')->get();
-        $collection = new Collection($datatransaksi);
+        $currentPage = $request->get('page', 1);
+
+        // Filter Sort By
+        $sortby = $request->input('sortby');
+
+        // Query data transaksi dengan relasi
+        $query = Transaksi::with('User', 'Penjemputan', 'Pengiriman', 'Layanan', 'Pembayaran');
+
+        // Filter Status
+        $status = $request->input('status');
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $searchQuery = $request->input('search');
+ // Filter pencarian berdasarkan nama, alamat, dan status
+    if ($searchQuery) {
+    $query->where(function ($q) use ($searchQuery) {
+        $q->where('alamat', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('status', 'LIKE', '%' . $searchQuery . '%');
+    });
+}
+
+        // Urutan data berdasarkan Sort By
+        if ($sortby === 'asc') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($sortby === 'desc') {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $datatransaksi = $query->get();
+        $collection = collect($datatransaksi);
         $total = $collection->count();
         $start = ($currentPage - 1) * $perPage;
         $sliced = $collection->slice($start, $perPage);
         $paginatedItems = $sliced->values();
         $paginated = new LengthAwarePaginator($paginatedItems, $total, $perPage, $currentPage);
-    
-    
+
         return view('admin.pages.transaksi', [
-            'datatransaksi' => $datatransaksi,   
+            'datatransaksi' => $datatransaksi,
             'paginated' => $paginated,
             'currentPage' => $currentPage,
-            'perPage' => $perPage,    
+            'perPage' => $perPage,
+            'searchQuery' => $searchQuery 
         ]);
     }
-
     public function update(Request $request, $id)
 {
     $request->validate([

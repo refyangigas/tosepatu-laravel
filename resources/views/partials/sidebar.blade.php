@@ -5,7 +5,7 @@
             <!-- Replace the commented line below with your logo image -->
             {{-- <img src="{{ asset('admin/img/logo/logo2.png') }}"> --}}
         </div>
-        <div class="sidebar-brand-text mx-3">To Sepatu KC</div>
+        <div class="sidebar-brand-text mx-3">TOSEPATU ADMIN</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item">

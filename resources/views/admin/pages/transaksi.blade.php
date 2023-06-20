@@ -20,35 +20,67 @@
           </ol>
         </nav>
       </div>
-      <div class="col-lg-6 text-right">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button">
-          <button class="btn btn-primary" type="button" id="search-button">Search</button>
+      <form action="{{ route('transaksi') }}" method="GET">
+        <div class="col-lg-20 text-right">
+            <div class="input-group">
+                <input type="search" class="form-control" id="search-input" name="search" placeholder="Search" aria-label="Search" aria-describedby="search-button">
+                <button class="btn btn-primary" type="submit" id="search-button">Search</button>
+            </div>
         </div>
+    </form>
+    
+    </div>
+
+      <div class="table-responsive p-3">
+      <br>
+        <form id="filterForm" action="{{ route('transaksi') }}" method="GET">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="sortby">Sort By</label>
+                <select class="form-control" name="sortby" id="sortby">
+                  <option value="">Tidak diurutkan</option>
+                  <option value="asc" {{ request()->input('sortby') === 'asc' ? 'selected' : '' }}>Nama ASC (A-Z)</option>
+                  <option value="desc" {{ request()->input('sortby') === 'desc' ? 'selected' : '' }}>Nama DESC (Z-A)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" name="status" id="status">
+                  <option value="">Semua</option>
+                  <option value="Belum Selesai" {{ request()->input('status') === 'Belum Selesai' ? 'selected' : '' }}>Belum Selesai</option>
+                  <option value="Pengerjaan" {{ request()->input('status') === 'Pengerjaan' ? 'selected' : '' }}>Pengerjaan</option>
+                  <option value="Selesai" {{ request()->input('status') === 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="col-lg-6 text-end mt-3">
-      <div class="btn-group mr-2" style="margin-bottom: 10px;">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-          Sort By
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Nama Asc (A - Z)</a></li>
-          <li><a class="dropdown-item" href="#">Nama Desc (Z - A)</a></li>
-        </ul>
-      </div>
-      <div class="btn-group" style="margin-bottom: 10px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-            Status
-          </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Selesai</a></li>
-          <li><a class="dropdown-item" href="#">Belum Selesai</a></li>
-          <li><a class="dropdown-item" href="#">Pengerjaan</a></li>
-        </ul>
-      </div>
-    </div>
-    </div>
+    <script>
+      document.getElementById('sortby').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+      });
+    
+      document.getElementById('status').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+      });
+    </script>
+    
+    <script>
+      document.getElementById('sortby').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+      });
+    
+      document.getElementById('status').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+      });
+    </script>
+    
+    
     
       
       <div class="table-responsive">
@@ -333,6 +365,40 @@
   <style>
   .breadcrumb {
     margin-left: 0;
+  }
+</style>
+<style>
+  .card {
+    border: none;
+    background-color: transparent;
+  }
+
+  .card-body {
+    padding: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    background-color: #fff;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
   }
 </style>
 
