@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -27,20 +28,41 @@ class TransaksiController extends Controller
         if ($status) {
             $query->where('status', $status);
         }
+
+        // Filter pencarian berdasarkan nama, alamat, status, pembayaran, jumlah, dan tanggal
         $searchQuery = $request->input('search');
- // Filter pencarian berdasarkan nama, alamat, dan status
-    if ($searchQuery) {
-    $query->where(function ($q) use ($searchQuery) {
-        $q->where('alamat', 'LIKE', '%' . $searchQuery . '%')
-            ->orWhere('status', 'LIKE', '%' . $searchQuery . '%');
-    });
+        if ($searchQuery) {
+            $query->where(function ($q) use ($searchQuery) {
+                $q->where('alamat', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhere('status', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhere('jumlah', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhereHas('User', function ($userQuery) use ($searchQuery) {
+                        $userQuery->where('name', 'LIKE', '%' . $searchQuery . '%');
+                    })
+                    ->orWhereHas('Pembayaran', function ($pembayaranQuery) use ($searchQuery) {
+                        $pembayaranQuery->where('nama', 'LIKE', '%' . $searchQuery . '%');
+                    })
+                    ->orWhereDate('created_at', 'LIKE', '%' . $searchQuery . '%');
+            });
+        }
+
+        // Filter tanggal awal dan akhir
+$startDate = $request->input('start_date');
+$endDate = $request->input('end_date');
+if ($startDate && $endDate) {
+    $startDate = Carbon::createFromFormat('Y/m/d', $startDate)->startOfDay()->format('Y-m-d');
+    $endDate = Carbon::createFromFormat('Y/m/d', $endDate)->endOfDay()->format('Y-m-d');
+    $query->whereBetween('created_at', [$startDate, $endDate]);
 }
+
 
         // Urutan data berdasarkan Sort By
         if ($sortby === 'asc') {
-            $query->orderBy('created_at', 'asc');
+            $query->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                ->orderBy('users.name', 'asc');
         } elseif ($sortby === 'desc') {
-            $query->orderBy('created_at', 'desc');
+            $query->leftJoin('users', 'transaksi.id_user', '=', 'users.id')
+                ->orderBy('users.name', 'desc');
         }
 
         $datatransaksi = $query->get();
@@ -56,9 +78,13 @@ class TransaksiController extends Controller
             'paginated' => $paginated,
             'currentPage' => $currentPage,
             'perPage' => $perPage,
-            'searchQuery' => $searchQuery 
+            'searchQuery' => $searchQuery,
+            'startDate' => $startDate,
+            'endDate' => $endDate
         ]);
     }
+
+
     public function update(Request $request, $id)
 {
     $request->validate([

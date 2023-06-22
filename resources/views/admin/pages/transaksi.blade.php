@@ -31,54 +31,56 @@
     
     </div>
 
-      <div class="table-responsive p-3">
+    <div class="table-responsive p-3">
       <br>
-        <form id="filterForm" action="{{ route('transaksi') }}" method="GET">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="sortby">Sort By</label>
-                <select class="form-control" name="sortby" id="sortby">
-                  <option value="">Tidak diurutkan</option>
-                  <option value="asc" {{ request()->input('sortby') === 'asc' ? 'selected' : '' }}>Nama ASC (A-Z)</option>
-                  <option value="desc" {{ request()->input('sortby') === 'desc' ? 'selected' : '' }}>Nama DESC (Z-A)</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" name="status" id="status">
-                  <option value="">Semua</option>
-                  <option value="Belum Selesai" {{ request()->input('status') === 'Belum Selesai' ? 'selected' : '' }}>Belum Selesai</option>
-                  <option value="Pengerjaan" {{ request()->input('status') === 'Pengerjaan' ? 'selected' : '' }}>Pengerjaan</option>
-                  <option value="Selesai" {{ request()->input('status') === 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                </select>
-              </div>
+      <form id="filterForm" action="{{ route('transaksi') }}" method="GET">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="sortby">Sort By</label>
+              <select class="form-control" name="sortby" id="sortby">
+                <option value="">Tidak diurutkan</option>
+                <option value="asc" {{ request()->input('sortby') === 'asc' ? 'selected' : '' }}>Nama ASC (A-Z)</option>
+                <option value="desc" {{ request()->input('sortby') === 'desc' ? 'selected' : '' }}>Nama DESC (Z-A)</option>
+              </select>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-control" name="status" id="status">
+                <option value="">Semua</option>
+                <option value="Belum Selesai" {{ request()->input('status') === 'Belum Selesai' ? 'selected' : '' }}>Belum Selesai</option>
+                <option value="Pengerjaan" {{ request()->input('status') === 'Pengerjaan' ? 'selected' : '' }}>Pengerjaan</option>
+                <option value="Selesai" {{ request()->input('status') === 'Selesai' ? 'selected' : '' }}>Selesai</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="start_date">Tanggal Awal</label>
+              <input type="date" class="form-control" id="start_date" name="start_date" value="{{ request()->input('start_date') ? \Carbon\Carbon::createFromFormat('Y-m-d', request()->input('start_date'))->format('Y-m-d') : '' }}" placeholder="Tanggal Awal">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="end_date">Tanggal Akhir</label>
+              <input type="date" class="form-control" id="end_date" name="end_date" value="{{ request()->input('end_date') ? \Carbon\Carbon::createFromFormat('Y-m-d', request()->input('end_date'))->format('Y-m-d') : '' }}" placeholder="Tanggal Akhir">
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Cari</button>
+          </div>
+        </div>
+      </form>
+    </div>    
     <script>
-      document.getElementById('sortby').addEventListener('change', function() {
-        document.getElementById('filterForm').submit();
-      });
-    
-      document.getElementById('status').addEventListener('change', function() {
-        document.getElementById('filterForm').submit();
+      document.getElementById('filterForm').addEventListener('submit', function() {
+        // Do something before form submission if needed
       });
     </script>
     
-    <script>
-      document.getElementById('sortby').addEventListener('change', function() {
-        document.getElementById('filterForm').submit();
-      });
-    
-      document.getElementById('status').addEventListener('change', function() {
-        document.getElementById('filterForm').submit();
-      });
-    </script>
     
     
     

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+
 class DashboardController extends Controller
 {
     public function index()
@@ -32,36 +33,23 @@ class DashboardController extends Controller
             'totaldatalayanan' => $datalayanan,
         ]);
     }
+
     public function getPendapatan()
     {
-        $pendapatan = Transaksi::selectRaw('WEEK(tanggal) as minggu, SUM(total) as pendapatan')
-            ->where('status', 'Selesai')
-            ->whereMonth('tanggal', date('m'))
-            ->whereYear('tanggal', date('Y'))
-            ->groupBy('minggu')
-            ->orderBy('minggu')
-            ->pluck('pendapatan')
-            ->toArray();
-    
-        $formattedPendapatan = [];
-        foreach ($pendapatan as $amount) {
-            $formattedPendapatan[] = $amount;
-        }
-    
-        $labels = Transaksi::selectRaw('WEEK(tanggal) as minggu')
-            ->where('status', 'Selesai')
-            ->whereMonth('tanggal', date('m'))
-            ->whereYear('tanggal', date('Y'))
-            ->groupBy('minggu')
-            ->orderBy('minggu')
-            ->pluck('minggu')
-            ->toArray();
-    
         $formattedLabels = [];
-        $weekNumber = 1;
-        foreach ($labels as $minggu) {
-            $formattedLabels[] = "Minggu " . $weekNumber;
-            $weekNumber++;
+        $formattedPendapatan = [];
+        $currentWeekStart = Carbon::now()->startOfWeek();
+    
+        for ($i = 0; $i < 4; $i++) {
+            $weekStart = $currentWeekStart->copy()->subWeeks(3 - $i)->startOfWeek();
+            $weekEnd = $weekStart->copy()->endOfWeek();
+    
+            $weekPendapatan = Transaksi::where('status', 'Selesai')
+                ->whereBetween('tanggal', [$weekStart, $weekEnd])
+                ->sum('total');
+    
+            $formattedLabels[$i] = "Minggu " . ($i + 1);
+            $formattedPendapatan[$i] = $weekPendapatan;
         }
     
         return response()->json([
@@ -69,38 +57,38 @@ class DashboardController extends Controller
             'data' => $formattedPendapatan
         ]);
     }
+    
+
+
 
     public function getJumlahTransaksi()
     {
-        $jumlahTransaksi = Transaksi::selectRaw('WEEK(tanggal) as minggu, COUNT(*) as jumlah')
-            ->where('status', 'Selesai')
-            ->whereMonth('tanggal', date('m'))
-            ->whereYear('tanggal', date('Y'))
-            ->groupBy('minggu')
-            ->orderBy('minggu')
-            ->pluck('jumlah')
-            ->toArray();
-
-        $labels = Transaksi::selectRaw('WEEK(tanggal) as minggu')
-            ->where('status', 'Selesai')
-            ->whereMonth('tanggal', date('m'))
-            ->whereYear('tanggal', date('Y'))
-            ->groupBy('minggu')
-            ->orderBy('minggu')
-            ->pluck('minggu')
-            ->toArray();
-
         $formattedLabels = [];
-        $weekNumber = 1;
-        foreach ($labels as $minggu) {
-            $formattedLabels[] = "Minggu " . $weekNumber;
-            $weekNumber++;
+        $formattedJumlahTransaksi = [];
+        $formattedJumlahSepatu = [];
+        $currentWeekStart = Carbon::now()->startOfWeek();
+    
+        for ($i = 0; $i < 4; $i++) {
+            $weekStart = $currentWeekStart->copy()->subWeeks(4 - $i)->startOfWeek();
+            $weekEnd = $weekStart->copy()->endOfWeek();
+    
+            $jumlahTransaksi = Transaksi::where('status', 'Selesai')
+                ->whereBetween('tanggal', [$weekStart, $weekEnd])
+                ->count();
+    
+            $jumlahSepatu = Transaksi::where('status', 'Selesai')
+                ->whereBetween('tanggal', [$weekStart, $weekEnd])
+                ->sum('jumlah');
+    
+            $formattedLabels[$i] = "Minggu " . ($i + 1);
+            $formattedJumlahTransaksi[$i] = $jumlahTransaksi;
+            $formattedJumlahSepatu[$i] = $jumlahSepatu;
         }
-
+    
         return response()->json([
             'labels' => $formattedLabels,
-            'data' => $jumlahTransaksi,
+            'jumlahTransaksi' => $formattedJumlahTransaksi,
+            'jumlahSepatu' => $formattedJumlahSepatu
         ]);
     }
-}
-    
+}    

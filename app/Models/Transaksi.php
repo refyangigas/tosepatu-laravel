@@ -58,7 +58,10 @@ class Transaksi extends Model
     {
     return ($this->pengiriman->harga * $this->jumlah) + ($this->penjemputan->harga * $this->jumlah) + ($this->layanan->harga * $this->jumlah);
     }
-
+    public function setTanggalAttribute($value)
+    {
+        $this->attributes['tanggal'] = Carbon::createFromFormat('Y/m/d', $value)->format('Y-m-d');
+    }
 
 
 }

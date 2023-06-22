@@ -49,24 +49,25 @@ $(document).ready(function() {
         },
         scales: {
           xAxes: [{
-            time: {
-              unit: 'date'
-            },
             gridLines: {
               display: false,
               drawBorder: false
             },
             ticks: {
-              maxTicksLimit: 7
+              maxTicksLimit: 4,
+              padding: 10, // Menambahkan jarak antara sumbu X dan label
+              callback: function(value, index, values) {
+                return value;
+              }
             }
           }],
           yAxes: [{
             ticks: {
-              maxTicksLimit: 5,
-              padding: 10,
               callback: function(value, index, values) {
                 return formatCurrency(value);
-              }
+              },
+              beginAtZero: true,
+              padding: 10 // Menambahkan jarak antara sumbu Y dan label
             },
             gridLines: {
               color: "rgb(234, 236, 244)",
@@ -108,10 +109,12 @@ $(document).ready(function() {
   }
 
   function updateChart(labels, data) {
-    myLineChart.data.labels = labels;
-    myLineChart.data.datasets[0].data = data;
-    myLineChart.update();
-  }
+  myLineChart.data.labels = labels;
+  myLineChart.data.datasets[0].data = data;
+  myLineChart.options.scales.xAxes[0].ticks.maxTicksLimit = labels.length;
+  myLineChart.update();
+}
+
 
   function getData() {
     $.ajax({

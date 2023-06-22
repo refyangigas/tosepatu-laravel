@@ -138,98 +138,111 @@
 
 
 
-  <!-- Bar Chart -->
+ <!-- Bar Chart -->
 <div class="col-xl-4 col-lg-5">
-    <div class="card mb-4">
+  <div class="card mb-4">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Jumlah Orderan (Bulan)</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Jumlah Orderan (Bulan)</h6>
       </div>
       <div class="card-body">
-        <div class="chart-container" style="height: 320px;">
-          <canvas id="orderChart"></canvas>
-        </div>
+          <div class="chart-container" style="height: 320px;">
+              <canvas id="orderChart"></canvas>
+          </div>
       </div>
-    </div>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
       // Mendapatkan data dari server
       fetch('/dashboard/get-jumlah-transaksi')
-        .then(response => response.json())
-        .then(data => {
-          // Data untuk grafik
-          var chartData = {
-            labels: data.labels,
-            datasets: [{
-              label: "Jumlah Orderan",
-              data: data.data,
-              backgroundColor: "rgba(54, 162, 235, 0.2)",
-              borderColor: "rgba(54, 162, 235, 1)",
-              borderWidth: 1,
-              fill: true,
-            }]
-          };
-  
-          // Opsi konfigurasi grafik
-          var options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            tooltips: {
-              callbacks: {
-                title: function(tooltipItem, data) {
-                  return 'Minggu ' + (tooltipItem[0].index + 1);
-                },
-                label: function(tooltipItem, data) {
-                  return 'Order: ' + tooltipItem.yLabel;
-                }
-              }
-            },
-            scales: {
-              x: {
-                display: true,
-                title: {
-                  display: true,
-                  text: 'Minggu'
-                }
-              },
-              y: {
-                display: true,
-                title: {
-                  display: true,
-                  text: 'Order Quantity'
-                },
-                ticks: {
-                  beginAtZero: true,
-                  callback: function(value, index, values) {
-                    // Mengatur format sumbu y sesuai kondisi jumlah orderan
-                    if (value >= 1000) {
-                      return (value / 1000) + 'k';
-                    } else if (value >= 100) {
-                      return (value / 100) + '00';
-                    } else if (value >= 10) {
-                      return (value / 10) + '0';
-                    } else {
-                      return value;
-                    }
+          .then(response => response.json())
+          .then(data => {
+              // Data untuk grafik
+              var chartData = {
+                  labels: data.labels,
+                  datasets: [{
+                          label: "Jumlah Orderan",
+                          data: data.jumlahTransaksi,
+                          backgroundColor: "rgba(54, 162, 235, 0.2)",
+                          borderColor: "rgba(54, 162, 235, 1)",
+                          borderWidth: 1,
+                          fill: true,
+                      },
+                      {
+                          label: "Jumlah Sepatu",
+                          data: data.jumlahSepatu,
+                          backgroundColor: "rgba(255, 99, 132, 0.2)",
+                          borderColor: "rgba(255, 99, 132, 1)",
+                          borderWidth: 1,
+                          fill: true,
+                      }
+                  ]
+              };
+
+              // Opsi konfigurasi grafik
+              var options = {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  tooltips: {
+                      callbacks: {
+                          title: function(tooltipItem, data) {
+                              return 'Minggu ' + (tooltipItem[0].index + 1);
+                          },
+                          label: function(tooltipItem, data) {
+                              if (tooltipItem.datasetIndex === 0) {
+                                  return 'Order: ' + tooltipItem.yLabel;
+                              } else if (tooltipItem.datasetIndex === 1) {
+                                  return 'Jumlah Sepatu: ' + tooltipItem.yLabel;
+                              }
+                          }
+                      }
+                  },
+                  scales: {
+                      x: {
+                          display: true,
+                          title: {
+                              display: true,
+                              text: 'Minggu'
+                          }
+                      },
+                      y: {
+                          display: true,
+                          title: {
+                              display: true,
+                              text: 'Order Quantity'
+                          },
+                          ticks: {
+                              beginAtZero: true,
+                              callback: function(value, index, values) {
+                                  // Mengatur format sumbu y sesuai kondisi jumlah orderan
+                                  if (value >= 1000) {
+                                      return (value / 1000) + 'k';
+                                  } else if (value >= 100) {
+                                      return (value / 100) + '00';
+                                  } else if (value >= 10) {
+                                      return (value / 10) + '0';
+                                  } else {
+                                      return value;
+                                  }
+                              }
+                          }
+                      }
                   }
-                }
-              }
-            }
-          };
-  
-          // Membuat grafik menggunakan Chart.js
-          var ctx = document.getElementById('orderChart').getContext('2d');
-          var orderChart = new Chart(ctx, {
-            type: 'bar',
-            data: chartData,
-            options: options
+              };
+
+              // Membuat grafik menggunakan Chart.js
+              var ctx = document.getElementById('orderChart').getContext('2d');
+              var orderChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: chartData,
+                  options: options
+              });
           });
-        });
-    });
-  </script>
-  
+  });
+</script>
+
 
 
         <!-- Modal Logout -->
